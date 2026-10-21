@@ -2,6 +2,7 @@
 import { nextTick, onMounted, onUnmounted, ref, watch } from "vue";
 import { gsap } from "gsap";
 import MobileNavigation from "./MobileNavigation.vue";
+import LegacyLogo from "./LegacyLogo.vue";
 const emit = defineEmits(["quote"]);
 async function requestMobileQuote() {
   menuOpen.value = false;
@@ -27,7 +28,7 @@ onMounted(() => {
         "--nav-muted": next ? "#567789" : "#d7f2ff",
         "--logo-primary": next ? "#27a9e6" : "#ffffff",
         "--logo-secondary": next ? "#1688bb" : "#bcecff",
-        "--logo-scale": next ? 1 : (context.conditions.mobile ? 1.18 : 1.45),
+        "--logo-scale": next ? 1 : (context.conditions.mobile ? 1 : 1.1),
         duration: immediate || context.conditions.reduced ? 0 : 0.45,
         ease: "power2.out",
         overwrite: true,
@@ -49,7 +50,7 @@ onUnmounted(() => media?.revert());
 const links = [
   { text: "About", href: "#about" },
   { text: "Services", href: "#services" },
-  { text: "Why Climaro", href: "#why-us" },
+  { text: "Service Areas", href: "#service-areas" },
   { text: "FAQ", href: "#faq" },
   { text: "Contact", href: "#contact" },
 ];
@@ -64,26 +65,10 @@ function closeMenus() {
       <a
         class="brand"
         href="#home"
-        aria-label="Climaro home"
+        aria-label="Superior Comfort Heating and Cooling home"
         @click="closeMenus"
       >
-        <svg
-          class="brand-mark"
-          viewBox="0 0 44 44"
-          fill="none"
-          aria-hidden="true"
-        >
-          <path
-            d="M22 3a19 19 0 1 1-19 19h10a9 9 0 1 0 9-9V3Z"
-            fill="var(--logo-primary)"
-          />
-          <path
-            d="M3 20C3 10.6 10.6 3 20 3v10a7 7 0 0 1-7 7H3Z"
-            fill="var(--logo-secondary)"
-          />
-          <path d="M3 20c8.2 0 17-7 17-17" stroke="white" stroke-width="1.5" />
-        </svg>
-        <span class="nav-brand-text">Climaro<small>HEATING &amp; COOLING</small></span>
+        <LegacyLogo />
       </a>
       <div
         class="nav-links"
@@ -106,7 +91,7 @@ function closeMenus() {
           $emit('quote');
         "
       >
-        Get a Quote
+        Free Estimate
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6" /></svg>
       </button>
       <button
@@ -133,7 +118,7 @@ function closeMenus() {
 </template>
 
 <style scoped>
-.site-header { --surface-opacity: 0; --nav-offset: 24px; --nav-base-height: 86px; --nav-ink: #fff; --brand-ink: #fff; --nav-muted: #d7f2ff; --logo-primary: #fff; --logo-secondary: #bcecff; --logo-scale: 1.45; height: 110px; padding: 0; pointer-events: none; background: transparent; border: 0; box-shadow: none; isolation: isolate; }
+.site-header { --surface-opacity: 0; --nav-offset: 24px; --nav-base-height: 86px; --nav-ink: #fff; --brand-ink: #fff; --nav-muted: #d7f2ff; --logo-primary: #fff; --logo-secondary: #bcecff; --logo-scale: 1.1; height: 110px; padding: 0; pointer-events: none; background: transparent; border: 0; box-shadow: none; isolation: isolate; }
 .site-header::before { content: ''; position: absolute; inset: 0 0 auto; height: calc(var(--nav-base-height) + var(--nav-offset)); z-index: -1; pointer-events: none; background: #fff; border-bottom: 1px solid #d4e8f2; box-shadow: 0 4px 24px #105b7e12; opacity: var(--surface-opacity); }
 .navbar { transform: translateY(var(--nav-offset)); pointer-events: auto; width: min(var(--content-max-width), calc(100% - 64px)); max-width: none; min-height: 85px; padding: 0; gap: 36px; background: transparent; border-radius: 0; box-shadow: none; }
 .brand { gap: 11px; min-height: 44px; color: var(--brand-ink); transform: scale(var(--logo-scale)); transform-origin: left center; }
@@ -160,10 +145,10 @@ function closeMenus() {
   .nav-quote { min-height: 44px; padding: 10px 16px; font-size: 14px; }
 }
 @media (max-width: 540px) {
-  .site-header { --logo-scale: 1.18; }
+  .site-header { --logo-scale: 1; }
   .navbar { width: calc(100% - 40px); gap: 16px; }
   .brand-mark { width: 35px; height: 35px; }
-  .brand { gap: 8px; }
+  .brand { gap: 8px; --legacy-logo-width: 118px; }
   .nav-brand-text { font-size: 22px; }
   .nav-brand-text small { font-size: 14px; letter-spacing: 1px; }
   .nav-quote { padding-inline: 12px; }
@@ -178,6 +163,10 @@ function closeMenus() {
 @media (max-width: 540px) {
   .nav-quote { display: none; }
   .navbar { gap: 24px; }
+}
+@media (max-width: 380px) {
+  .brand { transform: none; }
+  .nav-brand-text { font-size: 20px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .nav-link::after { transition: none; }

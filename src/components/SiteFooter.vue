@@ -1,26 +1,17 @@
 <script setup>
-import { ref } from "vue";
 import SiteIcon from "./SiteIcon.vue";
-defineEmits(["quote"]);
-const email = ref("");
-const saved = ref(false);
-const error = ref("");
+import LegacyLogo from "./LegacyLogo.vue";
+import { business, services } from "../siteContent.js";
+
+defineEmits(["quote", "reviews"]);
 const links = [
   { label: "Home", href: "#home" },
   { label: "About Us", href: "#about" },
-  { label: "Services", href: "#services" },
+  { label: "HVAC Services", href: "#services" },
+  { label: "Service Areas", href: "#service-areas" },
   { label: "FAQ", href: "#faq" },
   { label: "Contact", href: "#contact" },
 ];
-function saveNewsletter() {
-  try {
-    localStorage.setItem("climaro-newsletter-interest", email.value);
-    saved.value = true;
-    error.value = "";
-  } catch {
-    error.value = "Your browser could not save your email. Please try again.";
-  }
-}
 </script>
 
 <template>
@@ -30,48 +21,43 @@ function saveNewsletter() {
         <div class="footer-airflow" aria-hidden="true"><SiteIcon name="air" /></div>
         <div class="footer-intro-row">
           <div class="footer-statement">
-            <span class="footer-eyebrow">COMFORT STARTS WITH A CONVERSATION</span>
-            <p>Good air.<br /><span>Even better days.</span></p>
+            <span class="footer-eyebrow">PHILADELPHIA HEATING &amp; COOLING</span>
+            <p>Your local team.<br /><span>Every season.</span></p>
           </div>
           <div class="footer-invitation">
             <SiteIcon name="conversation" />
-            <p>A question, a repair, a fresh start.<br />We're here for your home.</p>
-            <a href="#contact" class="footer-talk">Let's talk comfort <span><SiteIcon /></span></a>
+            <p>No heat? No cooling?<br />24/7 emergency service is a call away.</p>
+            <a :href="business.phoneHref" class="footer-talk">Call {{ business.phone }} <span><SiteIcon name="phone" /></span></a>
           </div>
         </div>
         <div class="footer-details">
           <div class="footer-identity">
-            <a href="#home" class="brand"><img src="/favicon.svg" width="46" height="46" alt="" /><span>Climaro</span></a>
-            <p>Thoughtful care for the place<br />you call home.</p>
-            <span class="footer-local"><SiteIcon name="pin" />Local homes. Lasting comfort.</span>
+            <a href="#home" class="brand" aria-label="Superior Comfort Heating and Cooling home"><LegacyLogo /></a>
+            <p>{{ business.company }}</p>
+            <span class="footer-local"><SiteIcon name="pin" />Philadelphia &amp; the Main Line</span>
           </div>
 
           <nav class="footer-navigation" aria-label="Footer navigation">
             <h2>Explore</h2>
             <a v-for="link in links" :key="link.label" :href="link.href">{{ link.label }}</a>
+            <button type="button" @click="$emit('reviews')">Customer Stories</button>
           </nav>
           <div class="footer-support">
-            <h2>Here to help</h2>
-            <button @click="$emit('quote', 'Air conditioning')"><SiteIcon name="snow" />Air conditioning<SiteIcon class="footer-small-arrow" /></button>
-            <button @click="$emit('quote', 'Heating')"><SiteIcon name="heat" />Heating solutions<SiteIcon class="footer-small-arrow" /></button>
-            <button @click="$emit('quote', 'Indoor air quality')"><SiteIcon name="air" />Indoor air quality<SiteIcon class="footer-small-arrow" /></button>
-            <button @click="$emit('quote', 'Emergency repair')"><SiteIcon name="clock" />24/7 emergency support<SiteIcon class="footer-small-arrow" /></button>
+            <h2>Our services</h2>
+            <button v-for="service in services" :key="service.id" @click="$emit('quote', service.name)"><SiteIcon :name="service.icon" />{{ service.name }}<SiteIcon class="footer-small-arrow" /></button>
+            <button @click="$emit('quote', 'Emergency HVAC repair')"><SiteIcon name="clock" />24/7 emergency service<SiteIcon class="footer-small-arrow" /></button>
           </div>
-          <div class="footer-updates">
-            <h2>A little care, all year.</h2>
-            <p>Seasonal tips for a more comfortable home.</p>
-            <form @submit.prevent="saveNewsletter">
-              <label class="sr-only" for="newsletter-email">Newsletter email address</label>
-              <input id="newsletter-email" v-model.trim="email" type="email" required autocomplete="email" placeholder="Your email address" @input="saved = false; error = ''" />
-              <button type="submit">Save<SiteIcon /></button>
-            </form>
-            <p v-if="saved" class="footer-notice" role="status">Email saved on this device. Online signup is not connected yet.</p>
-            <p v-if="error" class="footer-notice" role="alert">{{ error }}</p>
+          <div class="footer-updates footer-contact-details">
+            <h2>Contact our Philadelphia team</h2>
+            <a :href="business.phoneHref">{{ business.phone }}</a>
+            <a :href="business.emailHref">{{ business.email }}</a>
+            <a :href="business.mapHref">{{ business.address }}</a>
+            <p>Serving Philadelphia and Delaware, Montgomery, Bucks, and Chester counties.</p>
           </div>
         </div>
         <div class="footer-end">
-          <p>&#169;&#65038; {{ new Date().getFullYear() }} Climaro. All rights reserved.</p>
-          <span class="footer-end-note">Heating. Cooling. Peace of mind.</span>
+          <p>&#169;&#65038; {{ new Date().getFullYear() }} {{ business.company }}. All rights reserved.</p>
+          <span class="footer-end-note">Licensed &amp; insured in Pennsylvania.</span>
           <a href="#home">Back to top<SiteIcon name="left" /></a>
         </div>
       </div>
@@ -85,7 +71,7 @@ function saveNewsletter() {
 .footer-airflow { position: absolute; z-index: -1; pointer-events: none; width: 680px; right: -210px; top: -80px; color: #b6eaff; opacity: .06; transform: rotate(-15deg); }
 .footer-airflow svg { width: 100%; height: auto; stroke-width: .35; }
 .footer-intro-row { display: grid; grid-template-columns: 1.5fr 1fr; align-items: end; gap: 80px; padding-bottom: 54px; }
-.footer-identity .brand { display: inline-flex; gap: 12px; align-items: center; font-size: 30px; color: #fff; }
+.footer-identity .brand { --legacy-logo-width: 240px; max-width: 100%; min-width: 0; display: inline-flex; gap: 12px; align-items: center; font-size: 22px; line-height: 1.25; color: #fff; }
 .footer-identity > p { font-size: 17px; line-height: 1.6; margin-top: 20px; color: #d2e8f2; }
 .footer-local { display: flex; align-items: center; gap: 8px; font-size: 14px; margin-top: 23px; color: #d7edf8; }
 .footer-local svg { width: 18px; height: 18px; }
@@ -99,10 +85,17 @@ function saveNewsletter() {
 .footer-talk > span { display: grid; place-items: center; height: 46px; width: 46px; border: 1px solid #a7d9ef80; border-radius: var(--radius-control); transition: background .2s, transform .2s; }
 .footer-talk svg { width: 21px; height: 21px; }
 .footer-talk:hover > span { background: #ffffff20; transform: translateX(3px); }
-.footer-details { display: grid; grid-template-columns: 1fr .55fr 1fr 1.15fr; gap: 50px; padding-block: 46px 48px; border-top: 1px solid #c5e7f533; }
+.footer-details { display: grid; grid-template-columns: 1fr .6fr 1fr 1.15fr; gap: 32px; padding-block: 46px 48px; border-top: 1px solid #c5e7f533; }
+.footer-details > * { min-width: 0; }
+.footer-identity .brand img { flex-shrink: 0; }
+.footer-contact-details a { display: flex; align-items: center; min-height: 44px; font-size: 14px; line-height: 1.6; color: #d2e8f2; overflow-wrap: anywhere; }
+.footer-contact-details a:hover { color: #fff; text-decoration: underline; }
+.footer-contact-details > p { margin-top: 16px; }
 .footer-details h2 { margin: 0 0 16px; font-size: 16px; font-weight: 500; letter-spacing: 0; color: #fff; }
 .footer-navigation { display: flex; flex-direction: column; align-items: flex-start; }
-.footer-navigation a { display: flex; align-items: center; min-width: 44px; min-height: 44px; font-size: 14px; color: #d2e8f2; }
+.footer-navigation button { background: none; border: 0; padding: 0; text-align: left; cursor: pointer; }
+.footer-navigation button:focus-visible { outline: 2px solid #94e0ff; outline-offset: 3px; }
+.footer-navigation a, .footer-navigation button { display: flex; align-items: center; min-width: 44px; min-height: 44px; font-size: 14px; color: #d2e8f2; }
 .footer-support button { display: flex; align-items: center; width: 100%; gap: 10px; text-align: left; background: none; padding: 10px 0; min-height: 44px; font-size: 14px; color: #d2e8f2; }
 .footer-support svg { width: 21px; height: 21px; flex-shrink: 0; color: #94e0ff; }
 .footer-support .footer-small-arrow { width: 16px; height: 16px; margin-left: auto; }
@@ -139,7 +132,9 @@ function saveNewsletter() {
   .footer-details { grid-template-columns: .7fr 1.3fr; gap: 30px 20px; padding-block: 28px; }
   .footer-updates { grid-column: 1 / -1; }
   .footer-updates > p { max-width: none; }
-  .footer-navigation a { min-height: 44px; }
+  .footer-navigation button { background: none; border: 0; padding: 0; text-align: left; cursor: pointer; }
+.footer-navigation button:focus-visible { outline: 2px solid #94e0ff; outline-offset: 3px; }
+.footer-navigation a, .footer-navigation button { min-height: 44px; }
   .footer-updates input { font-size: 16px; }
   .footer-end { align-items: flex-start; flex-direction: column; gap: 6px; }
 }

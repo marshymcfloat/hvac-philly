@@ -1,6 +1,7 @@
 <script setup>
 import SiteIcon from "./SiteIcon.vue";
 import ComfortOverview from "./ComfortOverview.vue";
+import { business } from "../siteContent.js";
 defineEmits(["quote"]);
 </script>
 
@@ -18,16 +19,16 @@ defineEmits(["quote"]);
     </div>
     <div class="hero-inner">
       <div class="hero-editorial">
-        <div class="hero-eyebrow"><SiteIcon name="air" /><span>HEATING. COOLING. PEACE OF MIND.</span></div>
-        <h1 id="hero-title">Home comfort.<br /><span>Done right.</span></h1>
-        <p class="hero-description">Expert heating, cooling, and air care.<br /> Honest service. A more comfortable home.</p>
+        <div class="hero-eyebrow"><SiteIcon name="air" /><span>PHILADELPHIA &amp; THE MAIN LINE</span></div>
+        <h1 id="hero-title">Philly heating.<br /><span>Cooling. Covered.</span></h1>
+        <p class="hero-description">Furnace, boiler, AC, and heat-pump experts for homes and businesses. 24/7 emergency service across the Philadelphia metro area.</p>
         <div class="hero-cta-row">
-          <button class="button button-white" @click="$emit('quote')">Book a Service<SiteIcon /></button>
-          <a href="#services" class="hero-services-link">Explore services<SiteIcon /></a>
+          <a class="button button-white" :href="business.phoneHref">Call {{ business.phone }}<SiteIcon name="phone" /></a>
+          <button type="button" class="hero-services-link" @click="$emit('quote')">Request an estimate<SiteIcon /></button>
         </div>
         <div class="hero-care-note">
           <span class="hero-shield"><SiteIcon name="shield" /></span>
-          <div><strong>Expert hands. Honest advice.</strong><p>Licensed, insured, and here to help.</p></div>
+          <div><strong>Superior Comfort Heating &amp; Cooling LLC</strong><p>Licensed in PA. Insured. Free estimates.</p></div>
         </div>
       </div>
     </div>
@@ -38,7 +39,7 @@ defineEmits(["quote"]);
 </template>
 
 <style scoped>
-.hero-composition { height: min(100dvh, 1000px); margin-top: -110px; display: grid; grid-template-rows: minmax(0, 1fr) auto; }
+.hero-composition { height: min(100dvh, 1000px); min-height: 780px; margin-top: -110px; display: grid; grid-template-rows: minmax(0, 1fr) auto; }
 .hero-visual picture { display: block; width: 100%; height: 100%; }
 
 .hero-section { --hero-nav-space: 110px; height: 100%; min-height: 0; margin-top: 0; padding: 0; display: grid; grid-template-rows: minmax(0, 1fr); background: #095979; }
@@ -62,7 +63,7 @@ defineEmits(["quote"]);
 .hero-cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 32px; margin-top: 34px; }
 .hero-cta-row .button { min-height: 54px; padding: 15px 23px; border-radius: var(--radius-control); color: var(--ink); gap: 25px; background: #fff; border: 1px solid #fff; box-shadow: none; }
 .hero-cta-row .button:hover { background: #eaf5fb; border-color: #eaf5fb; }
-.hero-services-link { display: inline-flex; align-items: center; gap: 12px; color: #fff; min-height: 48px; font-size: 15px; }
+.hero-services-link { display: inline-flex; align-items: center; gap: 12px; padding: 0; border: 0; background: transparent; color: #fff; min-height: 48px; font: inherit; font-size: 15px; cursor: pointer; }
 .hero-services-link svg { width: 19px; height: 19px; }
 .hero-services-link:hover { text-decoration: underline; text-underline-offset: 6px; }
 .hero-care-note { display: flex; align-items: center; gap: 14px; margin-top: clamp(20px, 3dvh, 32px); padding: 18px 20px; border-left: 2px solid #58d1ff; border-radius: 0; background: transparent; max-width: 435px; color: #dff3fb; }
@@ -87,8 +88,11 @@ defineEmits(["quote"]);
 @media (max-width: 1150px) {
   .hero-composition { margin-top: -92px; }
 }
+@media (min-width: 768px) and (max-width: 1000px) {
+  .hero-care-note { display: none; }
+}
 @media (max-width: 767px) {
-  .hero-composition { height: auto; display: block; }
+  .hero-composition { height: auto; min-height: 0; display: block; }
   .hero-section { height: 100dvh; max-height: none; margin-top: 0; }
   .hero-stage { padding: 0; display: grid; grid-template-rows: minmax(0, 1fr) auto; background: #095979; }
   .hero-visual { inset: 0 0 auto; height: 72%; mask-image: none; opacity: 1; }

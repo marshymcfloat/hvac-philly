@@ -2,6 +2,7 @@
 import { onUnmounted, ref } from "vue";
 import { gsap } from "gsap";
 import SiteIcon from "./SiteIcon.vue";
+import { faqs } from "../siteContent.js";
 defineEmits(["quote"]);
 const active = ref(null);
 const animations = new Map();
@@ -35,47 +36,9 @@ onUnmounted(() => {
   animations.forEach((animation) => animation.kill());
   animations.clear();
 });
-const faqs = [
-  {
-    question: "What heating and cooling services do you offer?",
-    mobileQuestion: "What services do you offer?",
-    answer:
-      "We help with air conditioning repairs and installation, furnace and heat pump service, seasonal maintenance, ventilation, air filtration, and indoor air quality. We work with both homes and businesses.",
-  },
-  {
-    question: "Do you offer emergency HVAC services?",
-    mobileQuestion: "Can you help in an emergency?",
-    answer:
-      "Yes. Contact our team when your heating or cooling fails unexpectedly. We will help assess the issue, explain the next steps, and confirm the earliest available appointment.",
-  },
-  {
-    question: "How quickly can a technician arrive?",
-    mobileQuestion: "How soon can you visit?",
-    answer:
-      "Availability depends on your location, the issue, and our current schedule. We prioritize urgent problems and confirm an arrival window when you book.",
-  },
-  {
-    question: "Are your technicians licensed and insured?",
-    mobileQuestion: "Are you licensed and insured?",
-    answer:
-      "Our service is built around qualified technicians, appropriate licensing, and insurance. Ask our team for the credentials relevant to your system and service area.",
-  },
-  {
-    question: "How does your pricing work?",
-    mobileQuestion: "How does pricing work?",
-    answer:
-      "We explain the diagnosis, recommended work, and price before you approve the job. If there are different repair or replacement options, we walk you through them.",
-  },
-  {
-    question: "How do I schedule an appointment?",
-    mobileQuestion: "How do I book a service?",
-    answer:
-      "Select Book Now or Get a Quote to prepare your contact details and choose the service you need.",
-  },
-];
 const groups = [
-  { title: "Services & availability", icon: "tool", items: faqs.slice(0, 3).map((faq, index) => ({ ...faq, index })) },
-  { title: "Booking & peace of mind", icon: "shield", items: faqs.slice(3).map((faq, index) => ({ ...faq, index: index + 3 })) },
+  { title: "Services & availability", icon: "tool", items: faqs.slice(0, 6).map((faq, index) => ({ ...faq, index })) },
+  { title: "Pricing, warranties & booking", icon: "shield", items: faqs.slice(6).map((faq, index) => ({ ...faq, index: index + 6 })) },
 ];
 </script>
 
@@ -84,8 +47,8 @@ const groups = [
     <div class="faq-container">
       <header class="faq-heading">
         <span class="section-tag"><span aria-hidden="true"></span>Frequently Asked Questions</span>
-        <h2 id="faq-title">A little clarity.<br /><span>A lot more comfort.</span></h2>
-        <p><span class="faq-desktop-copy">From your first question to your next service visit, here's what you can expect from Climaro.</span><span class="faq-mobile-copy">Helpful answers. One less thing to worry about.</span></p>
+        <h2 id="faq-title">Your HVAC questions.<br /><span>Local answers.</span></h2>
+        <p><span class="faq-desktop-copy">Service areas, older boilers, equipment brands, pricing, and home warranty support from Philly HVAC Pros.</span><span class="faq-mobile-copy">Service, pricing, and booking with Philly HVAC Pros.</span></p>
       </header>
 
       <div class="faq-columns">
@@ -95,7 +58,7 @@ const groups = [
             <h3>
               <button :id="`faq-question-${faq.index}`" :aria-expanded="active === faq.index"
                 :aria-controls="`faq-answer-${faq.index}`" @click="active = active === faq.index ? null : faq.index">
-                <span class="faq-number" aria-hidden="true">0{{ faq.index + 1 }}</span>
+                <span class="faq-number" aria-hidden="true">{{ String(faq.index + 1).padStart(2, '0') }}</span>
                 <span class="faq-question"><span class="faq-desktop-copy">{{ faq.question }}</span><span class="faq-mobile-copy">{{ faq.mobileQuestion }}</span></span>
                 <span class="faq-toggle"><SiteIcon name="plus" /></span>
               </button>
@@ -114,8 +77,8 @@ const groups = [
 
       <div class="faq-help">
         <span class="faq-help-icon"><SiteIcon name="conversation" /></span>
-        <div><h3>Still have a question?</h3><p>Tell us what your home needs. We'll help you find the next step.</p></div>
-        <button class="button button-blue" @click="$emit('quote')">Start a Request<SiteIcon /></button>
+        <div><h3>Need help with your system?</h3><p>Call 215-416-6557 for service or a free estimate.</p></div>
+        <button class="button button-blue" @click="$emit('quote')">Prepare a Request<SiteIcon /></button>
       </div>
     </div>
   </section>

@@ -2,10 +2,10 @@
 import SiteIcon from "./SiteIcon.vue";
 
 const services = [
-  { icon: "snow", title: "Keep cool.", detail: "Air conditioning" },
-  { icon: "heat", title: "Stay warm.", detail: "Heating solutions" },
-  { icon: "air", title: "Breathe easy.", detail: "Indoor air quality" },
-  { icon: "tool", title: "Rest assured.", detail: "Repairs & maintenance" },
+  { icon: "heat", title: "Furnaces & boilers", detail: "Repair & replacement" },
+  { icon: "snow", title: "AC & heat pumps", detail: "Installation & service" },
+  { icon: "home", title: "Water heaters", detail: "Gas & electric systems" },
+  { icon: "clock", title: "24/7 emergencies", detail: "Homes & businesses" },
 ];
 </script>
 
@@ -13,8 +13,8 @@ const services = [
   <section class="comfort-overview" aria-labelledby="comfort-overview-title">
     <div class="comfort-overview-inner">
       <div class="comfort-overview-heading">
-        <span>EVERY SEASON. EVERY DAY.</span>
-        <h2 id="comfort-overview-title">Comfort, covered.</h2>
+        <span>PHILLY HVAC PROS</span>
+        <h2 id="comfort-overview-title">Your local HVAC team.</h2>
       </div>
       <ul class="comfort-overview-services">
         <li v-for="service in services" :key="service.icon">

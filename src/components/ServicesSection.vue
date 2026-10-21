@@ -1,63 +1,13 @@
 <script setup>
 import { computed, ref } from "vue";
 import SiteIcon from "./SiteIcon.vue";
+import ImageLightbox from "./ImageLightbox.vue";
+import { services } from "../siteContent.js";
 
 defineEmits(["quote"]);
 const selectedIndex = ref(0);
-const services = [
-  {
-    id: "cooling", mobileDescription: "AC repairs, upgrades, and tune-ups to keep your home cool.", icon: "snow", name: "Air Conditioning", short: "Keep your cool.",
-    image: "/images/hvac-service-photo.png",
-    alt: "HVAC technician checking refrigerant gauges beside an outdoor air conditioner.",
-    headline: "Cool air. Comfortable days.",
-    description: "From an AC that won't cool to a system ready for an upgrade, we help you find the right fix and keep your home comfortable.",
-    includes: [
-      { icon: "tool", title: "AC repairs", detail: "Find the fault. Restore the cool." },
-      { icon: "snow", title: "New installations", detail: "The right system for your space." },
-      { icon: "clock", title: "Seasonal tune-ups", detail: "Keep your AC ready for the heat." },
-    ],
-    action: "Request AC Service",
-  },
-  {
-    id: "heating", mobileDescription: "Reliable repairs and maintenance for a warmer, more comfortable home.", icon: "heat", name: "Heating Solutions", short: "Warmth you can rely on.",
-    image: "/images/hvac-indoor-photo.png",
-    alt: "Technician inspecting a residential heating system with a diagnostic meter.",
-    headline: "A warmer welcome home.",
-    description: "Uneven rooms, unusual noises, or no heat at all? We diagnose the problem and care for the system that keeps your home warm.",
-    includes: [
-      { icon: "tool", title: "Furnace repairs", detail: "Resolve faults and uneven heating." },
-      { icon: "heat", title: "Heat pumps", detail: "Efficient comfort, all year round." },
-      { icon: "clock", title: "Heating maintenance", detail: "Get your system ready for winter." },
-    ],
-    action: "Request Heating Service",
-  },
-  {
-    id: "air-quality", mobileDescription: "Cleaner air and balanced humidity, tailored to your home.", icon: "air", name: "Indoor Air Quality", short: "Make room for better air.",
-    image: "/images/service-air-quality.png",
-    alt: "Gloved technician fitting a clean pleated air filter into a home air handler.",
-    headline: "A fresh start, in every room.",
-    description: "Give the air inside your home the attention it deserves with filtration, ventilation, and humidity solutions suited to your space.",
-    includes: [
-      { icon: "shield", title: "Air filtration", detail: "Help capture airborne particles." },
-      { icon: "air", title: "Ventilation", detail: "Keep fresh air moving through." },
-      { icon: "home", title: "Humidity control", detail: "Bring moisture levels into balance." },
-    ],
-    action: "Request Air Quality Service",
-  },
-  {
-    id: "emergency", mobileDescription: "Heating or cooling stopped? Find the fault and get your comfort back.", icon: "tool", name: "Emergency HVAC Repair", short: "Get your comfort back.",
-    image: "/images/service-emergency.png",
-    alt: "HVAC technician diagnosing an outdoor air conditioner with a work light at dusk.",
-    headline: "When comfort can't wait.",
-    description: "An unexpected breakdown can disrupt your whole day. Get help identifying the fault, understanding your options, and restoring your heating or cooling.",
-    includes: [
-      { icon: "tool", title: "System diagnostics", detail: "Understand what's gone wrong." },
-      { icon: "snow", title: "Cooling breakdowns", detail: "Get help when your AC stops." },
-      { icon: "heat", title: "Heating failures", detail: "A clear path back to warmth." },
-    ],
-    action: "Request Emergency Repair",
-  },
-];
+const lightboxIndex = ref(null);
+const galleryImages = services.map(service => ({ src: service.image, alt: service.alt, title: service.name, description: service.short }));
 const selected = computed(() => services[selectedIndex.value]);
 function selectService(index) {
   selectedIndex.value = index;
@@ -68,9 +18,9 @@ function selectService(index) {
   <section id="services" class="service-showcase page-section" aria-labelledby="services-title">
     <div class="service-container">
       <header class="service-heading">
-        <span class="section-tag"><span aria-hidden="true"></span>Our Services</span>
-        <h2 id="services-title">Expert care.<br /><span>For every kind of comfort.</span></h2>
-        <p>Cooling, heating, and healthier air. One team for everything your home needs.</p>
+        <span class="section-tag"><span aria-hidden="true"></span>Heating, Cooling &amp; More</span>
+        <h2 id="services-title">Complete HVAC.<br /><span>Across the Philly metro.</span></h2>
+        <p>Furnaces, boilers, AC, heat pumps, water heaters, and commercial systems. Installation, repair, and maintenance from one local team.</p>
       </header>
 
       <div class="service-options" role="group" aria-label="Choose an HVAC service">
@@ -84,17 +34,18 @@ function selectService(index) {
       </div>
 
       <article id="service-detail" class="service-feature" aria-labelledby="service-detail-title">
-        <div class="service-feature-photo">
-          <img v-for="(service, index) in services" :key="service.id" :src="service.image"
-            :alt="selectedIndex === index ? service.alt : ''" :aria-hidden="selectedIndex !== index"
-            :class="{ 'is-visible': selectedIndex === index }" width="1536" height="1024" loading="lazy" decoding="async" />
-          <span class="service-photo-label"><span></span>Care that comes to you</span>
+        <button type="button" class="service-feature-photo" :aria-label="`View full image: ${selected.name}`" aria-haspopup="dialog" @click="lightboxIndex = selectedIndex">
+          <Transition name="service-photo">
+            <img :key="selected.id" :src="selected.image" :srcset="selected.srcset" sizes="(min-width: 1504px) 706px, (min-width: 768px) calc((100vw - 80px) / 2), calc(100vw - 58px)"
+              :alt="selected.alt" width="1536" height="1024" loading="lazy" decoding="async" />
+          </Transition>
+          <span class="service-photo-label"><span></span>Philadelphia-area service</span>
           <div class="service-photo-caption" aria-hidden="true">
             <SiteIcon :name="selected.icon" />
             <span>{{ selected.short }}</span>
-            <span class="service-photo-number">0{{ selectedIndex + 1 }} / 04</span>
+            <span class="service-photo-number">0{{ selectedIndex + 1 }} / 0{{ services.length }}</span>
           </div>
-        </div>
+        </button>
         <div class="service-feature-content" aria-live="polite" aria-atomic="true">
           <span class="service-eyebrow">{{ selected.name }}</span>
           <h3 id="service-detail-title">{{ selected.headline }}</h3>
@@ -114,10 +65,11 @@ function selectService(index) {
       </article>
 
       <div class="service-guidance">
-        <div><SiteIcon name="conversation" /><p>Not sure what your home needs?<span>Start with a conversation. We'll help with the rest.</span></p></div>
-        <button type="button" @click="$emit('quote')">Let's find the right service<SiteIcon /></button>
+        <div><SiteIcon name="conversation" /><p>No heat or no cooling?<span>Call 215-416-6557 for 24/7 emergency HVAC support.</span></p></div>
+        <button type="button" @click="$emit('quote')">Prepare a service request<SiteIcon /></button>
       </div>
     </div>
+    <ImageLightbox v-model:index="lightboxIndex" :images="galleryImages" />
   </section>
 </template>
 
@@ -130,7 +82,7 @@ function selectService(index) {
 .service-heading h2 { margin: 0; color: #183343; font-size: clamp(38px, 4.2vw, 56px); font-weight: 500; line-height: 1.08; letter-spacing: -2px; }
 .service-heading h2 span { color: #178ac0; }
 .service-heading > p { justify-self: end; max-width: 340px; margin: 0; color: #596f7d; font-size: 18px; line-height: 1.6; }
-.service-options { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; padding: 7px; border: 1px solid #cce5f1; border-radius: var(--radius-panel); background: #eaf5fb; margin-bottom: 22px; }
+.service-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; padding: 7px; border: 1px solid #cce5f1; border-radius: var(--radius-panel); background: #eaf5fb; margin-bottom: 22px; }
 .service-option { position: relative; display: flex; flex-direction: column; gap: 19px; min-width: 0; padding: 24px; border: 0; border-radius: var(--radius-control); background: transparent; color: #31576d; text-align: left; cursor: pointer; transition: background 200ms, color 200ms; }
 .service-option + .service-option::before { content: ''; position: absolute; left: 0; top: 26px; bottom: 26px; width: 1px; background: #cce2ed; }
 .service-option.is-selected::before, .service-option.is-selected + .service-option::before { opacity: 0; }
@@ -144,9 +96,9 @@ function selectService(index) {
 .service-option-bottom > svg { width: 18px; height: 18px; flex-shrink: 0; color: #168fc3; transform: rotate(45deg); transition: transform 200ms; }
 .service-option.is-selected .service-option-bottom > svg { transform: rotate(90deg); }
 .service-feature { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); padding: 8px; border: 1px solid #daeaf2; border-radius: var(--radius-panel); background: #fff; box-shadow: none; overflow: hidden; }
-.service-feature-photo { position: relative; isolation: isolate; min-height: 560px; overflow: hidden; border-radius: var(--radius-media); background: #cfe5ee; }
-.service-feature-photo > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 48% center; opacity: 0; transition: opacity 300ms ease; }
-.service-feature-photo > img.is-visible { opacity: 1; }
+.service-feature-photo { display: block; width: 100%; padding: 0; border: 0; text-align: left; cursor: zoom-in; position: relative; isolation: isolate; min-height: 560px; overflow: hidden; border-radius: var(--radius-media); background: #cfe5ee; }
+.service-feature-photo > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 48% center; transition: opacity 300ms ease; }
+.service-feature-photo > img.service-photo-enter-from, .service-feature-photo > img.service-photo-leave-to { opacity: 0; }
 .service-feature-photo::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, #122e4215 0%, transparent 50%, #102c45a6 100%); }
 .service-photo-label { position: absolute; z-index: 1; top: 25px; left: 25px; display: inline-flex; align-items: center; gap: 9px; padding: 10px 14px; border-radius: var(--radius-control); background: #fffffff0; color: #31576d; font-size: 14px; }
 .service-photo-label > span { width: 6px; height: 6px; background: var(--brand-primary); }
@@ -175,6 +127,7 @@ function selectService(index) {
 .service-guidance p span { display: block; margin-top: 5px; color: #69808d; font-size: 14px; line-height: 1.5; }
 .service-guidance button { display: inline-flex; align-items: center; gap: 15px; min-height: 44px; padding: 8px 0; background: transparent; border: 0; color: #167ead; font-size: 14px; cursor: pointer; }
 .service-guidance button svg { width: 20px; height: 20px; }
+.service-feature-photo:focus-visible { outline: 3px solid #168fc3; outline-offset: -4px; }
 .service-option:focus-visible, .service-request:focus-visible, .service-guidance button:focus-visible { outline: 3px solid #168fc3; outline-offset: 4px; }
 @media (max-width: 1050px) {
   .service-option { padding: 20px 16px; }

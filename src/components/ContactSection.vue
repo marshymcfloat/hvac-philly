@@ -2,19 +2,14 @@
 import { reactive, ref } from "vue";
 import CustomSelect from "./CustomSelect.vue";
 import SiteIcon from "./SiteIcon.vue";
+import { business, serviceOptions } from "../siteContent.js";
 
 const form = reactive({ name: "", email: "", phone: "", postcode: "", service: "", message: "" });
 const serviceSelect = ref(null);
 const serviceError = ref(false);
 const saved = ref(false);
 const error = ref("");
-const options = [
-  { value: "Air conditioning", label: "Air conditioning", icon: "snow" },
-  { value: "Heating", label: "Heating solutions", icon: "heat" },
-  { value: "Indoor air quality", label: "Indoor air quality", icon: "air" },
-  { value: "Emergency repair", label: "Emergency HVAC repair", icon: "tool" },
-  { value: "General enquiry", label: "Something else / I'm not sure", icon: "conversation" },
-];
+const options = serviceOptions;
 function serviceChanged() { serviceError.value = false; saved.value = false; error.value = ""; }
 function saveRequest() {
   saved.value = false;
@@ -28,17 +23,17 @@ function saveRequest() {
   let link;
   try {
     const text = [
-      "CLIMARO - CONTACT REQUEST", "",
+      `${business.name.toUpperCase()} - CONTACT REQUEST`, business.company, "",
       `Name: ${form.name.trim()}`, `Email: ${form.email.trim()}`,
       `Phone: ${form.phone.trim() || 'Not provided'}`, `ZIP / postal code: ${form.postcode.trim() || 'Not provided'}`,
       `Service: ${form.service}`, "", "Message:", form.message.trim(), "",
       `Created: ${new Date().toISOString()}`, "",
-      "This is a local request draft. It has not been sent to Climaro.",
+      `This is a request draft. Email it to ${business.email} or call ${business.phone} to arrange service.`,
     ].join("\n");
     url = URL.createObjectURL(new Blob([text], { type: "text/plain;charset=utf-8" }));
     link = document.createElement("a");
     link.href = url;
-    link.download = "climaro-contact-request.txt";
+    link.download = "philly-hvac-pros-contact-request.txt";
     document.body.appendChild(link);
     link.click();
     saved.value = true;
@@ -55,24 +50,24 @@ function saveRequest() {
   <section id="contact" class="contact-section page-section" aria-labelledby="contact-title">
     <div class="contact-container">
       <div class="contact-intro">
-        <span class="section-tag"><span aria-hidden="true"></span>Contact Us</span>
-        <h2 id="contact-title">Let's talk<br /><span> comfort.</span></h2>
-        <p class="contact-intro-copy">A repair, a new system, or simply a question. Tell us what's on your mind and take the first step toward a more comfortable home.</p>
+        <span class="section-tag"><span aria-hidden="true"></span>Contact Philly HVAC Pros</span>
+        <h2 id="contact-title">Need HVAC<br /><span> service?</span></h2>
+        <p class="contact-intro-copy">Call for 24/7 emergency heating and cooling help, or contact Superior Comfort Heating &amp; Cooling LLC for a free estimate.</p>
         <div class="contact-promises">
-          <div><SiteIcon name="conversation" /><p><strong>A real conversation.</strong>Clear answers, without the technical overwhelm.</p></div>
-          <div><SiteIcon name="home" /><p><strong>Advice for your home.</strong>Solutions shaped around your space and needs.</p></div>
-          <div><SiteIcon name="price" /><p><strong>Clarity from the start.</strong>Understand your options before deciding.</p></div>
+          <div><SiteIcon name="phone" /><p><strong><a :href="business.phoneHref">{{ business.phone }}</a></strong>24/7 emergency service. Call for same-day availability.</p></div>
+          <div><SiteIcon name="mail" /><p><strong>Email our team</strong><a :href="business.emailHref">{{ business.email }}</a></p></div>
+          <div><SiteIcon name="pin" /><p><strong>Based in Philadelphia</strong><a :href="business.mapHref">{{ business.address }}</a></p></div>
         </div>
-        <div class="contact-signoff"><img src="/favicon.svg" alt="" width="38" height="38" /><span>Your home. Your comfort.<br /><strong>Our responsibility.</strong></span></div>
+        <div class="contact-signoff"><img src="/favicon.svg" alt="" width="38" height="38" /><span>Homeowners. Landlords. Businesses.<br /><strong>Philadelphia &amp; the surrounding counties.</strong></span></div>
       </div>
 
       <div class="contact-form-panel">
-        <header class="contact-form-heading"><span><SiteIcon name="mail" /></span><div><h3>How can we help?</h3><p>Share a few details to get started.</p></div></header>
+        <header class="contact-form-heading"><span><SiteIcon name="mail" /></span><div><h3>Prepare a service request</h3><p>Save your details to share with our team.</p></div></header>
         <form class="contact-form" @submit.prevent="saveRequest" @input="saved = false; error = ''">
           <div class="contact-field"><label for="contact-name">Full name <span>*</span></label><input id="contact-name" v-model.trim="form.name" name="name" autocomplete="name" placeholder="Your full name" required maxlength="120" /></div>
           <div class="contact-field"><label for="contact-email">Email address <span>*</span></label><input id="contact-email" v-model.trim="form.email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required maxlength="254" /></div>
           <div class="contact-field"><label for="contact-phone">Phone number <small>Optional</small></label><input id="contact-phone" v-model.trim="form.phone" name="phone" type="tel" autocomplete="tel" placeholder="Your phone number" maxlength="40" /></div>
-          <div class="contact-field"><label for="contact-postcode">ZIP / postal code <small>Optional</small></label><input id="contact-postcode" v-model.trim="form.postcode" name="postal-code" autocomplete="postal-code" placeholder="Your area" maxlength="20" /></div>
+          <div class="contact-field"><label for="contact-postcode">ZIP code <small>Optional</small></label><input id="contact-postcode" v-model.trim="form.postcode" name="postal-code" autocomplete="postal-code" placeholder="Philadelphia-area ZIP code" maxlength="20" /></div>
           <div class="contact-field contact-field-wide">
             <label id="contact-service-label" for="contact-service">What can we help with? <span>*</span></label>
             <CustomSelect id="contact-service" ref="serviceSelect" v-model="form.service" :options="options" labelledby="contact-service-label"
@@ -82,9 +77,9 @@ function saveRequest() {
           <div class="contact-field contact-field-wide"><label for="contact-message">Tell us a little more <span>*</span></label><textarea id="contact-message" v-model.trim="form.message" name="message" rows="4" placeholder="What's happening with your system, or what would you like help with?" required maxlength="4000"></textarea></div>
           <div class="contact-form-bottom contact-field-wide">
             <button class="button button-blue contact-submit" type="submit">Download My Request<SiteIcon /></button>
-            <p class="contact-form-note">Download a copy of your details. Online sending is not connected yet.</p>
+            <p class="contact-form-note">This saves a draft. Email it to <a :href="business.emailHref">{{ business.email }}</a> or call <a :href="business.phoneHref">{{ business.phone }}</a> to arrange service.</p>
           </div>
-          <p v-if="saved" class="contact-feedback contact-field-wide" role="status"><SiteIcon name="check" /><span>Your request download has started. It has not been sent to Climaro.</span></p>
+          <p v-if="saved" class="contact-feedback contact-field-wide" role="status"><SiteIcon name="check" /><span>Your draft has been downloaded. Email it to {{ business.email }} or call {{ business.phone }} to arrange service.</span></p>
           <p v-if="error" class="contact-error contact-field-wide" role="alert">{{ error }}</p>
         </form>
       </div>
@@ -105,6 +100,10 @@ function saveRequest() {
 .contact-promises > div { display: flex; align-items: flex-start; gap: 15px; }
 .contact-promises svg { width: 27px; height: 27px; flex-shrink: 0; color: #94e0ff; margin-top: 2px; }
 .contact-promises p { max-width: 350px; font-size: 15px; color: #cce3ee; line-height: 1.6; }
+.contact-promises a { display: inline-flex; align-items: center; min-height: 44px; overflow-wrap: anywhere; max-width: 100%; }
+.contact-promises p { min-width: 0; }
+.contact-promises a:hover, .contact-form-note a:hover { text-decoration: underline; }
+.contact-form-note a { display: inline-flex; align-items: center; min-height: 44px; overflow-wrap: anywhere; max-width: 100%; }
 .contact-promises strong { display: block; font-size: 17px; font-weight: 500; color: #f5fbff; margin-bottom: 3px; }
 .contact-signoff { display: flex; align-items: center; gap: 14px; padding-top: 28px; margin-top: 32px; border-top: 1px solid #c4e6f333; max-width: 400px; }
 .contact-signoff span { color: #cce3ee; font-size: 14px; line-height: 1.5; }
@@ -160,7 +159,7 @@ function saveRequest() {
   .contact-intro h2 { font-size: clamp(42px, 8vw, 60px); }
   .contact-intro h2 br { display: none; }
   .contact-intro-copy { margin-top: 20px; font-size: 16px; }
-  .contact-promises { display: none; }
+  .contact-promises { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 24px; }
   .contact-form-panel { padding: 26px 20px; }
   .contact-form-heading { gap: 12px; margin-bottom: 24px; }
   .contact-form-heading > span { width: 44px; height: 44px; border-radius: var(--radius-control); }

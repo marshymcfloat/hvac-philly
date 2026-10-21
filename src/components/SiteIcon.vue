@@ -4,6 +4,8 @@ defineProps({ name: { type: String, default: "arrow" } });
 
 <template>
   <svg
+    width="24"
+    height="24"
     viewBox="0 0 32 32"
     fill="none"
     stroke="currentColor"
@@ -51,6 +53,10 @@ defineProps({ name: { type: String, default: "arrow" } });
       <path
         d="M21 4a8 8 0 0 0-9 11L4 23a4 4 0 0 0 5 5l9-9a8 8 0 0 0 10-10l-6 6-5-5 6-6Z"
       />
+    </g>
+    <g v-else-if="name === 'user'">
+      <circle cx="16" cy="10" r="5" />
+      <path d="M6 28v-3a10 10 0 0 1 20 0v3" />
     </g>
     <g v-else-if="name === 'phone'">
       <path

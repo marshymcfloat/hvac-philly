@@ -1,6 +1,8 @@
 <script setup>
 import { nextTick, onMounted, onUnmounted, ref } from "vue";
 import SiteIcon from "./SiteIcon.vue";
+import LegacyLogo from "./LegacyLogo.vue";
+import { business } from "../siteContent.js";
 import { gsap } from "gsap";
 import { useLockScroll } from "../composables/useLockScroll.ts";
 import { getLenis } from "../composables/useSmoothScroll.js";
@@ -85,14 +87,17 @@ function requestQuote() { closeSheet("quote"); }
   <Teleport to="body">
     <div id="mobile-navigation" ref="sheet" class="mobile-sheet" role="dialog" aria-modal="true" aria-label="Main navigation" data-lenis-prevent @keydown="handleKey">
       <header class="sheet-header">
-        <a href="#home" class="sheet-brand" @click.prevent="navigate('#home')"><img src="/favicon.svg" alt="" width="40" height="40" />Climaro</a>
+        <a href="#home" class="sheet-brand" aria-label="Superior Comfort Heating and Cooling home" @click.prevent="navigate('#home')"><LegacyLogo /></a>
         <button ref="closeButton" type="button" aria-label="Close navigation" @click="closeSheet()"><SiteIcon name="close" /></button>
       </header>
       <nav class="sheet-navlinks" aria-label="Mobile navigation" data-lenis-prevent>
         <a v-for="(link, index) in links" :key="link.href" :href="link.href" @click.prevent="navigate(link.href)"><span class="sheet-number">0{{ index + 1 }}</span><span>{{ link.text }}</span><SiteIcon /></a>
-        <button type="button" class="button button-blue sheet-quote" @click="requestQuote">Get a Quote<SiteIcon /></button>
+        <button type="button" class="button button-blue sheet-quote" @click="requestQuote">Request a Free Estimate<SiteIcon /></button>
       </nav>
-      <footer class="sheet-footer"></footer>
+      <footer class="sheet-footer">
+        <a :href="business.phoneHref"><SiteIcon name="phone" />{{ business.phone }}<span>24/7 emergency service</span></a>
+        <a :href="business.emailHref">{{ business.email }}</a>
+      </footer>
     </div>
   </Teleport>
 </template>
@@ -100,7 +105,7 @@ function requestQuote() { closeSheet("quote"); }
 <style scoped>
 .mobile-sheet { position: fixed; inset: 0; z-index: 2147483647; height: 100dvh; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; overflow: hidden; background: #f3faff; color: #183e55; }
 .sheet-header { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: max(20px, env(safe-area-inset-top)) 20px 20px; border-bottom: 1px solid #cfe4ef; }
-.sheet-brand { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; font-size: 26px; font-weight: 600; }
+.sheet-brand { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; font-size: clamp(18px, 5vw, 26px); font-weight: 600; }
 .sheet-header button { width: 48px; height: 48px; display: grid; place-items: center; background: #e2f1fa; color: #1a739d; border: 1px solid #c2e1f0; border-radius: var(--radius-control); }
 .sheet-header svg { width: 25px; height: 25px; }
 .sheet-navlinks { overflow-y: auto; overscroll-behavior: contain; padding: 18px 20px 32px; }
@@ -108,6 +113,9 @@ function requestQuote() { closeSheet("quote"); }
 .sheet-number { font-size: 14px; color: #4f7a90; letter-spacing: 0; }
 .sheet-navlinks > a > svg { margin-left: auto; width: 24px; height: 24px; color: #168fc3; }
 .sheet-quote { margin-top: 28px; width: 100%; min-height: 54px; justify-content: space-between; }
-.sheet-footer { padding-bottom: env(safe-area-inset-bottom); }
+.sheet-footer { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; padding: 12px 24px max(16px, env(safe-area-inset-bottom)); border-top: 1px solid #cee3ee; }
+.sheet-footer a { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; min-height: 44px; font-size: 14px; overflow-wrap: anywhere; }
+.sheet-footer svg { width: 20px; height: 20px; }
+.sheet-footer span { color: #526e7f; }
 .mobile-sheet :is(a, button):focus-visible { outline: 3px solid #168fc3; outline-offset: 3px; }
 </style>

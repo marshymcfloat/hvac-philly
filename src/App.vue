@@ -5,6 +5,8 @@ import SiteNavbar from "./components/SiteNavbar.vue";
 import HeroSection from "./components/HeroSection.vue";
 import MissionSection from "./components/MissionSection.vue";
 import ServicesSection from "./components/ServicesSection.vue";
+import ServiceAreaSection from "./components/ServiceAreaSection.vue";
+import CustomerStories from "./components/CustomerStories.vue";
 import BenefitsSection from "./components/BenefitsSection.vue";
 import FaqSection from "./components/FaqSection.vue";
 import ContactSection from "./components/ContactSection.vue";
@@ -12,6 +14,7 @@ import SiteFooter from "./components/SiteFooter.vue";
 import QuoteDialog from "./components/QuoteDialog.vue";
 
 const quoteDialog = ref(null);
+const customerStories = ref(null);
 useSmoothScroll();
 const openQuote = (email = "", service = "") =>
   quoteDialog.value.open(email, service);
@@ -51,9 +54,11 @@ onUnmounted(() => observer?.disconnect());
     <MissionSection />
     <BenefitsSection />
     <ServicesSection @quote="quoteForService" />
+    <ServiceAreaSection />
     <FaqSection @quote="openQuote()" />
     <ContactSection />
   </main>
-  <SiteFooter @quote="quoteForService" />
+  <SiteFooter @quote="quoteForService" @reviews="customerStories.open()" />
+  <CustomerStories ref="customerStories" />
   <QuoteDialog ref="quoteDialog" />
 </template>

@@ -2,10 +2,10 @@
 import SiteIcon from "./SiteIcon.vue";
 
 const benefits = [
-  { icon: "shield", title: "Licensed experts", text: "Qualified care for your heating and cooling." },
-  { icon: "clock", title: "Responsive support", text: "Help when your comfort needs attention." },
-  { icon: "price", title: "Upfront pricing", text: "Know the cost before work begins." },
-  { icon: "check", title: "Work done right", text: "Careful work. Respect for your home." },
+  { icon: "shield", title: "Licensed & insured", text: "Pennsylvania HVAC service for homes and businesses." },
+  { icon: "clock", title: "24/7 emergency help", text: "Same-day priority for no-heat and no-cool calls." },
+  { icon: "price", title: "Free estimates", text: "A written quote before any work begins." },
+  { icon: "check", title: "Home warranty friendly", text: "We work with most home warranty companies." },
 ];
 </script>
 
@@ -13,8 +13,8 @@ const benefits = [
   <section id="why-us" class="benefits-band page-section" aria-labelledby="benefits-title">
     <div class="benefits-band-inner">
       <header class="benefits-band-heading">
-        <p>Why choose us</p>
-        <h2 id="benefits-title">Care you can<br />count on.</h2>
+        <p>Why Philly HVAC Pros</p>
+        <h2 id="benefits-title">Local service.<br />Clear options.</h2>
       </header>
       <ul class="benefits-band-list">
         <li v-for="benefit in benefits" :key="benefit.title">

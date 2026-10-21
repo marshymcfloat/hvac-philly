@@ -1,22 +1,53 @@
 <script setup>
+import { ref } from "vue";
 import SiteIcon from "./SiteIcon.vue";
+import ImageLightbox from "./ImageLightbox.vue";
+
+const selectedImage = ref(null);
+const images = [
+  {
+    src: "/images/about-philly-comfort-v1.webp",
+    srcset: "/images/about-philly-comfort-v1-640.webp 640w, /images/about-philly-comfort-v1-960.webp 960w, /images/about-philly-comfort-v1.webp 1536w",
+    alt: "Illustrative photograph of a sunlit Philadelphia rowhouse living room with a cast-iron radiator, brick wall, and linen sofa.",
+    title: "Comfort that feels like home.",
+    description: "Reliable heating, cooling, and air care through every season.",
+    label: "Everyday comfort",
+  },
+  {
+    src: "/images/about-philly-boiler-v1.webp",
+    srcset: "/images/about-philly-boiler-v1-640.webp 640w, /images/about-philly-boiler-v1-960.webp 960w, /images/about-philly-boiler-v1.webp 1536w",
+    alt: "Illustrative photograph of copper boiler piping, brass valves, and a pressure gauge in an older brick utility room.",
+    title: "Old-home know-how.",
+    description: "Steam, hot water, gas, and high-efficiency heating systems.",
+    label: "The systems behind your comfort",
+  },
+  {
+    src: "/images/about-philly-service-v1.webp",
+    srcset: "/images/about-philly-service-v1-640.webp 640w, /images/about-philly-service-v1-960.webp 960w, /images/about-philly-service-v1.webp 1536w",
+    alt: "Illustrative photograph of a technician checking an outdoor heat pump in a Philadelphia brick-rowhouse courtyard.",
+    title: "Local homes. Hands-on care.",
+    description: "Heating and cooling expertise for Philadelphia rowhouses and Main Line homes.",
+    label: "Philadelphia & the Main Line",
+  },
+];
 </script>
 
 <template>
   <section id="about" class="mission-section page-section" aria-labelledby="mission-title">
     <div class="mission-container">
       <header class="mission-heading">
-        <p class="mission-eyebrow section-tag"><span aria-hidden="true"></span>Our Mission</p>
-        <h2 id="mission-title">Good air.<br /><span>Better living.</span></h2>
+        <p class="mission-eyebrow section-tag"><span aria-hidden="true"></span>About Philly HVAC Pros</p>
+        <h2 id="mission-title">Local homes.<br /><span>Local expertise.</span></h2>
         <div class="mission-introduction">
           <div class="mission-intro-heading">
             <SiteIcon name="air" />
-            <p class="mission-lead">Comfort should be felt.<br />Never worried about.</p>
+            <p class="mission-lead">Superior Comfort.<br />Every season.</p>
           </div>
           <p>
-            Our mission is to make every home feel better to live in. Through
-            thoughtful heating, cooling, and air care, we look after the things
-            you don’t see—so you can enjoy the things that matter.
+            Superior Comfort Heating &amp; Cooling LLC serves homeowners,
+            landlords, property managers, and businesses across Philadelphia and
+            the surrounding counties. From older steam boilers to cold-climate
+            heat pumps, we repair, replace, and maintain the systems you rely on.
           </p>
         </div>
       </header>
@@ -24,67 +55,69 @@ import SiteIcon from "./SiteIcon.vue";
       <div class="mission-composition">
         <div class="mission-scene">
         <figure class="mission-home mission-image-frame">
-          <div class="mission-home-inner">
-            <img src="/images/mission-living-room-hvac.png"
-              alt="Sunlit living room with a visible wall-mounted air conditioner, ceiling ventilation, a linen sofa, and garden views."
-              width="1942" height="809" loading="lazy" decoding="async" />
-            <span class="mission-photo-index">01 / The feeling</span>
-          </div>
+          <button type="button" class="mission-home-inner mission-gallery-trigger" :aria-label="`View full image: ${images[0].title}`" aria-haspopup="dialog" @click="selectedImage = 0">
+            <img :src="images[0].src" :srcset="images[0].srcset" sizes="(min-width: 1504px) 1428px, calc(100vw - 40px)"
+              :alt="images[0].alt" width="1536" height="1024" loading="lazy" decoding="async" />
+            <span class="mission-photo-index">01 / Philadelphia homes</span>
+          </button>
           <figcaption>
-            <span class="mission-caption-eyebrow"><SiteIcon name="home" />EVERYDAY COMFORT</span>
-            <h3>Feel at home.<br />In every season.</h3>
-            <p>Balanced temperatures. Better air.<br />A home that feels right.</p>
+            <span class="mission-caption-eyebrow"><SiteIcon name="home" />HOMES &amp; BUSINESSES</span>
+            <h3>From rowhouses<br />to Main Line homes.</h3>
+            <p>Heating, cooling, and hot water.<br />Service for all major brands.</p>
           </figcaption>
         </figure>
 
         <div class="mission-details">
         <figure class="mission-system mission-story">
-          <div class="mission-story-image">
-            <img src="/images/mission-heat-pump.png"
-              alt="Modern heat pump installed beside a home with carefully finished landscaping."
-              width="1024" height="1536" loading="lazy" decoding="async" />
-          </div>
+          <button type="button" class="mission-story-image mission-gallery-trigger" :aria-label="`View full image: ${images[1].title}`" aria-haspopup="dialog" @click="selectedImage = 1">
+            <img :src="images[1].src" :srcset="images[1].srcset" sizes="(min-width: 1101px) 26vw, (min-width: 768px) 45vw, 44vw"
+              :alt="images[1].alt" width="1536" height="1024" loading="lazy" decoding="async" />
+          </button>
           <figcaption>
-            <div class="mission-story-top"><span class="mission-story-index"><b>02</b> BUILT TO LAST</span><span class="mission-story-icon"><SiteIcon name="shield" /></span></div>
-            <h3>Quietly dependable.</h3>
-            <p>Reliable systems, carefully installed.</p>
+            <div class="mission-story-top"><span class="mission-story-index"><SiteIcon name="shield" />Boiler care</span></div>
+            <div class="mission-story-copy">
+              <h3><span class="mission-story-title-desktop">Older homes. Expert care.</span><span class="mission-story-title-mobile">Boiler care.</span></h3>
+              <p>Steam, hot water, and high-efficiency boilers.</p>
+            </div>
           </figcaption>
         </figure>
 
         <figure class="mission-air mission-story">
-          <div class="mission-story-image">
-            <img src="/images/mission-fresh-air.png"
-              alt="Architectural air vent and sheer curtain beside a sunlit window."
-              width="1536" height="1024" loading="lazy" decoding="async" />
-          </div>
+          <button type="button" class="mission-story-image mission-gallery-trigger" :aria-label="`View full image: ${images[2].title}`" aria-haspopup="dialog" @click="selectedImage = 2">
+            <img :src="images[2].src" :srcset="images[2].srcset" sizes="(min-width: 1101px) 26vw, (min-width: 768px) 45vw, 44vw"
+              :alt="images[2].alt" width="1536" height="1024" loading="lazy" decoding="async" />
+          </button>
           <figcaption>
-            <div class="mission-story-top"><span class="mission-story-index"><b>03</b> FEEL THE DIFFERENCE</span><span class="mission-story-icon"><SiteIcon name="air" /></span></div>
-            <h3>Space to breathe.</h3>
-            <p>Better air, in every room.</p>
+            <div class="mission-story-top"><span class="mission-story-index"><SiteIcon name="air" />Heat pumps</span></div>
+            <div class="mission-story-copy">
+              <h3><span class="mission-story-title-desktop">Efficient upgrades.</span><span class="mission-story-title-mobile">Heat pumps.</span></h3>
+              <p>Ducted, ductless, and cold-climate systems.</p>
+            </div>
           </figcaption>
         </figure>
 
         </div>
 
         <div class="mission-principles">
-          <p class="mission-small-title">Good care makes the difference.</p>
+          <p class="mission-small-title">Repair first. Replace when needed.</p>
           <div>
             <SiteIcon name="conversation" />
-            <p><strong>Honest from the start.</strong> Clear advice and pricing, with room for your questions.</p>
+            <p><strong>Written quotes upfront.</strong> Understand the repair or replacement options before work begins.</p>
           </div>
           <div>
             <SiteIcon name="tool" />
-            <p><strong>Thoughtful to the finish.</strong> Respect for your space. Attention to every detail.</p>
+            <p><strong>Experience with older systems.</strong> Steam, hot water, gas, oil, and high-efficiency equipment.</p>
           </div>
         </div>
         </div>
       </div>
 
       <footer class="mission-closing">
-        <p>Your home. Your comfort.<br /><span>Our responsibility.</span></p>
-        <a href="#services" class="button button-blue mission-link">Discover how we care<span><SiteIcon /></span></a>
+        <p>Serving the Main Line<br /><span>since 2018.</span></p>
+        <a href="#services" class="button button-blue mission-link">See our HVAC services<span><SiteIcon /></span></a>
       </footer>
     </div>
+    <ImageLightbox v-model:index="selectedImage" :images="images" />
   </section>
 </template>
 
@@ -114,20 +147,20 @@ import SiteIcon from "./SiteIcon.vue";
 .mission-home figcaption > p { margin-top: 17px; color: #f0f3f4; font-size: 15px; line-height: 1.65; }
 .mission-home h3 { font-size: clamp(30px, 3vw, 42px); line-height: 1.12; letter-spacing: -1.1px; font-weight: 500; }
 .mission-details { position: absolute; z-index: 2; bottom: 174px; right: 36px; width: 54%; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.mission-story { position: relative; min-height: 310px; border: 1px solid #ffffffb3; border-radius: var(--radius-panel); overflow: hidden; background: #12638c; box-shadow: none; }
+.mission-story { position: relative; min-height: 310px; border: 1px solid #ffffff99; border-radius: 14px; overflow: hidden; background: #f5f3ee; box-shadow: 0 8px 28px #23312b14; }
 .mission-story-image { position: absolute; inset: 0; }
-.mission-story-image img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.mission-story-image::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, #17232955 0%, transparent 24%, transparent 48%, #17232966 70%, #172329d9 100%); }
+.mission-story-image img { display: block; width: 100%; height: 100%; object-fit: cover; filter: saturate(.72) contrast(.88) brightness(1.06); }
 .mission-system img { object-position: 50% 56%; }
 .mission-air img { object-position: 50% 40%; }
-.mission-story figcaption { position: relative; min-height: 308px; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-end; padding: 26px; color: #fff; }
-.mission-story-top { position: absolute; top: 18px; left: 20px; right: 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.mission-story-index { display: flex; align-items: center; gap: 9px; color: #fff; font-size: 14px; font-weight: 500; letter-spacing: 1.1px; text-shadow: 0 1px 5px #052d4a; }
-.mission-story-index b { font-size: 14px; font-weight: 500; letter-spacing: 0; padding-right: 9px; border-right: 1px solid #ffffff60; }
-.mission-story-icon { width: 37px; height: 37px; display: grid; place-items: center; flex-shrink: 0; border: 1px solid #ffffff80; border-radius: var(--radius-control); background: #17232940; color: #fff; }
-.mission-story-icon svg { width: 21px; height: 21px; }
-.mission-story h3 { color: #fff; font-size: clamp(23px, 1.9vw, 28px); font-weight: 500; line-height: 1.15; letter-spacing: -.6px; }
-.mission-story p { min-height: 20px; margin-top: 10px; color: #f0f3f4; font-size: 14px; line-height: 1.5; max-width: 240px; }
+.mission-story figcaption { position: relative; min-height: 308px; padding: 0; color: #fff; }
+.mission-story-copy { position: absolute; inset: auto 0 0; min-height: 122px; padding: 18px 22px 20px; background: linear-gradient(180deg, rgb(0 0 0 / 56%), rgb(0 0 0 / 70%)); }
+.mission-story-copy::before { content: ""; position: absolute; inset: -80px 0 auto; height: 80px; background: linear-gradient(180deg, transparent, rgb(0 0 0 / 56%)); pointer-events: none; }
+.mission-story-top { position: absolute; top: 16px; left: 16px; right: 16px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.mission-story-index { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid #ffffff33; border-radius: 100px; background: rgb(0 0 0 / 72%); color: #fff; font-size: 14px; font-weight: 500; letter-spacing: 0; text-shadow: none; }
+.mission-story-index svg { width: 18px; height: 18px; flex-shrink: 0; color: #fff; }
+.mission-story h3 { color: #fff; font-size: clamp(21px, 1.65vw, 25px); font-weight: 500; line-height: 1.25; letter-spacing: -.45px; text-shadow: none; text-wrap: balance; }
+.mission-story p { margin-top: 8px; color: #f0f0f0; font-size: 14px; line-height: 1.55; max-width: 260px; }
+.mission-story-title-mobile { display: none; }
 .mission-principles { position: absolute; z-index: 3; bottom: 32px; left: 36px; right: 36px; display: grid; grid-template-columns: .85fr 1.15fr 1.1fr; align-items: center; gap: 28px; min-height: 114px; padding: 23px 26px; border: 1px solid #ffffffcc; border-radius: var(--radius-panel); background: #f5fbfff0; box-shadow: none; }
 .mission-small-title { max-width: 260px; color: #183343; font-size: 22px; font-weight: 500; line-height: 1.25; letter-spacing: -.5px; }
 .mission-principles > div { display: flex; gap: 12px; padding-left: 22px; border-left: 1px solid #bfd7e3; }
@@ -177,7 +210,6 @@ import SiteIcon from "./SiteIcon.vue";
   .mission-details { position: relative; inset: auto; width: 100%; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 14px 0 0; padding: 0; }
   .mission-story { min-height: 0; border: 1px solid #d6e9f3; border-radius: var(--radius-panel); background: #fff; box-shadow: none; }
   .mission-story-image { position: relative; inset: auto; aspect-ratio: 4 / 5; }
-  .mission-story-image::after { display: none; }
   .mission-system img { object-position: 50% 55%; }
   .mission-air img { object-position: 48% 40%; }
   .mission-story figcaption { min-height: 0; padding: 16px 14px 18px; justify-content: flex-start; color: #183343; }
@@ -198,14 +230,21 @@ import SiteIcon from "./SiteIcon.vue";
   .mission-link { width: 100%; }
 }
 @media (max-width: 767px) {
-  .mission-story { aspect-ratio: 1; border: 0; border-radius: var(--radius-panel); }
+  .mission-story { aspect-ratio: 1; border: 1px solid #e8e7e1; border-radius: 12px; }
   .mission-story-image { position: absolute; inset: 0; aspect-ratio: auto; }
-  .mission-story-image::after { display: block; background: linear-gradient(180deg, transparent 35%, #102d3a26 55%, #102d3ad9 100%); }
-  .mission-story figcaption { position: absolute; inset: auto 0 0; padding: 14px; }
+  .mission-story figcaption { position: absolute; inset: 0; padding: 0; }
+  .mission-story-copy { min-height: 0; padding: 10px 12px 12px; }
+  .mission-story-copy::before { top: -48px; height: 48px; }
   .mission-story-top, .mission-story p { display: none; }
-  .mission-story h3 { color: #fff; font-size: clamp(18px, 4.7vw, 24px); line-height: 1.15; letter-spacing: -.4px; text-shadow: 0 1px 8px #102d3a40; }
+  .mission-story h3 { color: #fff; font-size: clamp(18px, 4.4vw, 22px); line-height: 1.25; letter-spacing: -.3px; text-shadow: none; }
+  .mission-story-title-desktop { display: none; }
+  .mission-story-title-mobile { display: block; }
 }
 @media (prefers-reduced-motion: reduce) {
   .mission-link, .mission-link svg { transition: none; }
 }
+.mission-gallery-trigger { display: block; padding: 0; border: 0; background: #d5e1e5; color: inherit; text-align: left; cursor: zoom-in; }
+.mission-story-image.mission-gallery-trigger { width: 100%; height: 100%; }
+.mission-gallery-trigger:focus-visible { outline: 3px solid #7dd6ff; outline-offset: -4px; }
+.mission-home figcaption, .mission-story figcaption { pointer-events: none; }
 </style>
