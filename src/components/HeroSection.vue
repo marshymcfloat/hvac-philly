@@ -20,7 +20,7 @@ defineEmits(["quote"]);
       <div class="hero-editorial">
         <div class="hero-eyebrow"><SiteIcon name="air" /><span>HEATING. COOLING. PEACE OF MIND.</span></div>
         <h1 id="hero-title">Home comfort.<br /><span>Done right.</span></h1>
-        <p class="hero-description">Expert heating, cooling, and air care.<br />Honest service. A more comfortable home.</p>
+        <p class="hero-description">Expert heating, cooling, and air care.<br /> Honest service. A more comfortable home.</p>
         <div class="hero-cta-row">
           <button class="button button-white" @click="$emit('quote')">Book a Service<SiteIcon /></button>
           <a href="#services" class="hero-services-link">Explore services<SiteIcon /></a>
@@ -60,13 +60,13 @@ defineEmits(["quote"]);
 .hero-editorial h1 span { display: inline-block; margin-top: 5px; color: #58d1ff; }
 .hero-description { max-width: 440px; margin-top: 28px; color: #e2f4fc; font-size: 18px; line-height: 1.65; }
 .hero-cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 32px; margin-top: 34px; }
-.hero-cta-row .button { min-height: 54px; padding: 15px 23px; border-radius: 13px; color: #fff; gap: 25px; background: linear-gradient(180deg, #1597ce, #2db9ee); border: 1px solid #8edfff; box-shadow: inset 0 1px 2px #ffffff80, 0 8px 22px #08618a25; }
-.hero-cta-row .button:hover { background: linear-gradient(180deg, #1aa5dc, #40c5f5); border-color: #c5efff; }
+.hero-cta-row .button { min-height: 54px; padding: 15px 23px; border-radius: var(--radius-control); color: var(--ink); gap: 25px; background: #fff; border: 1px solid #fff; box-shadow: none; }
+.hero-cta-row .button:hover { background: #eaf5fb; border-color: #eaf5fb; }
 .hero-services-link { display: inline-flex; align-items: center; gap: 12px; color: #fff; min-height: 48px; font-size: 15px; }
 .hero-services-link svg { width: 19px; height: 19px; }
 .hero-services-link:hover { text-decoration: underline; text-underline-offset: 6px; }
-.hero-care-note { display: flex; align-items: center; gap: 14px; margin-top: clamp(20px, 3dvh, 32px); padding: 18px 20px; border-left: 2px solid #58d1ff; border-radius: 0 12px 12px 0; background: #06476555; max-width: 435px; color: #dff3fb; }
-.hero-shield { display: grid; place-items: center; width: 42px; height: 42px; flex-shrink: 0; color: #58d1ff; border: 1px solid #58d1ff50; border-radius: 50%; }
+.hero-care-note { display: flex; align-items: center; gap: 14px; margin-top: clamp(20px, 3dvh, 32px); padding: 18px 20px; border-left: 2px solid #58d1ff; border-radius: 0; background: transparent; max-width: 435px; color: #dff3fb; }
+.hero-shield { display: grid; place-items: center; width: 42px; height: 42px; flex-shrink: 0; color: #58d1ff; border: 0; }
 .hero-shield svg { width: 24px; height: 24px; }
 .hero-care-note strong { display: block; font-size: 15px; font-weight: 500; }
 .hero-care-note p { margin-top: 4px; font-size: 14px; line-height: 1.5; color: #c9e4ef; }
@@ -131,6 +131,6 @@ defineEmits(["quote"]);
   .hero-description { margin-inline: auto; }
   .hero-cta-row { display: grid; grid-template-columns: 1fr; gap: 10px; }
   .hero-cta-row .button, .hero-services-link { width: 100%; min-height: 48px; justify-content: center; }
-  .hero-services-link { border: 1px solid #b8e6f866; border-radius: 13px; background: #ffffff08; }
+  .hero-services-link { border: 1px solid #b8e6f866; border-radius: var(--radius-control); background: #ffffff08; }
 }
 </style>

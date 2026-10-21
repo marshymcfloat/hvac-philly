@@ -101,7 +101,7 @@ function requestQuote() { closeSheet("quote"); }
 .mobile-sheet { position: fixed; inset: 0; z-index: 2147483647; height: 100dvh; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; overflow: hidden; background: #f3faff; color: #183e55; }
 .sheet-header { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: max(20px, env(safe-area-inset-top)) 20px 20px; border-bottom: 1px solid #cfe4ef; }
 .sheet-brand { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; font-size: 26px; font-weight: 600; }
-.sheet-header button { width: 48px; height: 48px; display: grid; place-items: center; background: #e2f1fa; color: #1a739d; border: 1px solid #c2e1f0; border-radius: 50%; }
+.sheet-header button { width: 48px; height: 48px; display: grid; place-items: center; background: #e2f1fa; color: #1a739d; border: 1px solid #c2e1f0; border-radius: var(--radius-control); }
 .sheet-header svg { width: 25px; height: 25px; }
 .sheet-navlinks { overflow-y: auto; overscroll-behavior: contain; padding: 18px 20px 32px; }
 .sheet-navlinks > a { display: flex; align-items: center; gap: 18px; min-height: 76px; padding: 20px 0; border-bottom: 1px solid #cfe4ef; font-size: clamp(25px, 6vw, 36px); font-weight: 500; letter-spacing: -.7px; }

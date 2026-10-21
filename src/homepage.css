@@ -68,7 +68,7 @@ img {
   flex-shrink: 0;
 }
 .button-blue {
-  background: linear-gradient(180deg, #1d7faf, #3cbdfd);
+  background: var(--brand-primary);
 }
 .page-container {
   width: min(var(--content-max-width), calc(100% - 64px));
@@ -101,10 +101,7 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  border: 1px solid #dedede;
-  background: #fff;
-  border-radius: 100px;
-  padding: 7px 13px;
+  padding: 0;
   font-size: 14px;
   line-height: 20px;
   font-weight: 500;
@@ -112,11 +109,10 @@ img {
   color: #242424;
 }
 .section-tag > span {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #28a9e7;
-  box-shadow: 0 0 0 3px #28a9e713;
+  width: 18px;
+  height: 2px;
+  flex-shrink: 0;
+  background: var(--brand-primary);
 }
 .section-topline {
   display: flex;

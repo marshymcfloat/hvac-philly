@@ -89,7 +89,7 @@ import SiteIcon from "./SiteIcon.vue";
 </template>
 
 <style scoped>
-.mission-section { position: relative; isolation: isolate; padding-block: 112px 88px; background: linear-gradient(180deg, #fff 0%, #f3fbff 55%, #e2f4fd 100%); color: #183343; }
+.mission-section { position: relative; isolation: isolate; padding-block: 112px 88px; background: #fff; color: #183343; }
 .mission-container { position: relative; width: min(var(--content-max-width), calc(100% - 64px)); margin-inline: auto; }
 .mission-heading { display: grid; grid-template-columns: 1.25fr 1fr; align-items: start; gap: 28px 48px; margin-bottom: 60px; }
 .mission-eyebrow { grid-column: 1 / -1; justify-self: start; }
@@ -103,18 +103,18 @@ import SiteIcon from "./SiteIcon.vue";
 .mission-composition { display: block; }
 .mission-composition figure { margin: 0; min-width: 0; }
 .mission-scene { position: relative; }
-.mission-home { position: relative; padding: 6px; border-radius: 32px; background: #fff; box-shadow: 0 18px 55px -30px #18334335; overflow: hidden; }
-.mission-home-inner { position: relative; width: 100%; height: clamp(740px, 54vw, 800px); overflow: hidden; border-radius: 26px; isolation: isolate; }
+.mission-home { position: relative; padding: 6px; border-radius: var(--radius-panel); background: #fff; box-shadow: none; overflow: hidden; }
+.mission-home-inner { position: relative; width: 100%; height: clamp(740px, 54vw, 800px); overflow: hidden; border-radius: var(--radius-media); isolation: isolate; }
 .mission-home img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; object-position: 25% center; }
 .mission-home-inner::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, #17232933 75%, #17232970 100%), radial-gradient(ellipse at 8% 100%, #17232999, transparent 60%); pointer-events: none; }
-.mission-photo-index { position: absolute; z-index: 1; top: 30px; left: 34px; color: #264653; background: #ffffffe0; padding: 8px 11px; border-radius: 6px; font-size: 14px; letter-spacing: 1.3px; text-transform: uppercase; font-weight: 500; }
+.mission-photo-index { position: absolute; z-index: 1; top: 30px; left: 34px; color: #264653; background: #ffffffe0; padding: 8px 11px; border-radius: var(--radius-control); font-size: 14px; letter-spacing: 1.3px; text-transform: uppercase; font-weight: 500; }
 .mission-home figcaption { position: absolute; z-index: 1; left: 42px; bottom: 184px; width: 36%; color: #fff; text-shadow: 0 2px 14px #00000030; }
 .mission-caption-eyebrow { display: inline-flex; align-items: center; gap: 10px; color: #fff; font-size: 14px; font-weight: 500; letter-spacing: 1.6px; margin-bottom: 16px; }
 .mission-caption-eyebrow svg { width: 23px; height: 23px; }
 .mission-home figcaption > p { margin-top: 17px; color: #f0f3f4; font-size: 15px; line-height: 1.65; }
 .mission-home h3 { font-size: clamp(30px, 3vw, 42px); line-height: 1.12; letter-spacing: -1.1px; font-weight: 500; }
 .mission-details { position: absolute; z-index: 2; bottom: 174px; right: 36px; width: 54%; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.mission-story { position: relative; min-height: 310px; border: 1px solid #ffffffb3; border-radius: 22px; overflow: hidden; background: #12638c; box-shadow: 0 16px 40px #042c5040, inset 0 0 0 1px #ffffff20; }
+.mission-story { position: relative; min-height: 310px; border: 1px solid #ffffffb3; border-radius: var(--radius-panel); overflow: hidden; background: #12638c; box-shadow: none; }
 .mission-story-image { position: absolute; inset: 0; }
 .mission-story-image img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .mission-story-image::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, #17232955 0%, transparent 24%, transparent 48%, #17232966 70%, #172329d9 100%); }
@@ -124,11 +124,11 @@ import SiteIcon from "./SiteIcon.vue";
 .mission-story-top { position: absolute; top: 18px; left: 20px; right: 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .mission-story-index { display: flex; align-items: center; gap: 9px; color: #fff; font-size: 14px; font-weight: 500; letter-spacing: 1.1px; text-shadow: 0 1px 5px #052d4a; }
 .mission-story-index b { font-size: 14px; font-weight: 500; letter-spacing: 0; padding-right: 9px; border-right: 1px solid #ffffff60; }
-.mission-story-icon { width: 37px; height: 37px; display: grid; place-items: center; flex-shrink: 0; border: 1px solid #ffffff80; border-radius: 50%; background: #17232940; color: #fff; }
+.mission-story-icon { width: 37px; height: 37px; display: grid; place-items: center; flex-shrink: 0; border: 1px solid #ffffff80; border-radius: var(--radius-control); background: #17232940; color: #fff; }
 .mission-story-icon svg { width: 21px; height: 21px; }
 .mission-story h3 { color: #fff; font-size: clamp(23px, 1.9vw, 28px); font-weight: 500; line-height: 1.15; letter-spacing: -.6px; }
 .mission-story p { min-height: 20px; margin-top: 10px; color: #f0f3f4; font-size: 14px; line-height: 1.5; max-width: 240px; }
-.mission-principles { position: absolute; z-index: 3; bottom: 32px; left: 36px; right: 36px; display: grid; grid-template-columns: .85fr 1.15fr 1.1fr; align-items: center; gap: 28px; min-height: 114px; padding: 23px 26px; border: 1px solid #ffffffcc; border-radius: 18px; background: #f5fbfff0; box-shadow: 0 8px 28px #17354810; }
+.mission-principles { position: absolute; z-index: 3; bottom: 32px; left: 36px; right: 36px; display: grid; grid-template-columns: .85fr 1.15fr 1.1fr; align-items: center; gap: 28px; min-height: 114px; padding: 23px 26px; border: 1px solid #ffffffcc; border-radius: var(--radius-panel); background: #f5fbfff0; box-shadow: none; }
 .mission-small-title { max-width: 260px; color: #183343; font-size: 22px; font-weight: 500; line-height: 1.25; letter-spacing: -.5px; }
 .mission-principles > div { display: flex; gap: 12px; padding-left: 22px; border-left: 1px solid #bfd7e3; }
 .mission-principles svg { width: 24px; height: 24px; flex-shrink: 0; color: #178ac0; }
@@ -138,8 +138,8 @@ import SiteIcon from "./SiteIcon.vue";
 .mission-closing::before { content: ""; position: absolute; top: 0; inset-inline: 0; height: 1px; background: linear-gradient(90deg, #18334326, #18334308); }
 .mission-closing > p { font-size: 25px; line-height: 1.3; letter-spacing: -.6px; }
 .mission-closing > p span { color: #178ac0; }
-.mission-link { display: inline-flex; align-items: center; justify-content: space-between; gap: 22px; padding: 7px 7px 7px 24px; min-height: 56px; border-radius: 16px; color: #fff; font-size: 15px; font-weight: 500; transition: transform 350ms cubic-bezier(.22, 1, .36, 1); }
-.mission-link > span { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; background: #ffffff18; }
+.mission-link { display: inline-flex; align-items: center; justify-content: space-between; gap: 22px; padding: 12px 22px; min-height: 56px; border-radius: var(--radius-control); color: #fff; font-size: 15px; font-weight: 500; transition: transform 350ms cubic-bezier(.22, 1, .36, 1); }
+.mission-link > span { display: grid; place-items: center; width: 22px; height: 22px; }
 .mission-link svg { width: 22px; height: 22px; transition: transform 350ms cubic-bezier(.22, 1, .36, 1); }
 .mission-link:hover svg { transform: translateX(3px); }
 .mission-link:active { transform: scale(.98); }
@@ -166,8 +166,8 @@ import SiteIcon from "./SiteIcon.vue";
   .mission-introduction { max-width: 480px; justify-self: center; padding: 0; }
   .mission-intro-heading { display: none; }
   .mission-introduction > p:last-child { font-size: 16px; line-height: 1.6; }
-  .mission-home { padding: 4px; border-radius: 24px; box-shadow: none; }
-  .mission-home-inner { height: clamp(340px, 90vw, 430px); border-radius: 20px; }
+  .mission-home { padding: 4px; border-radius: var(--radius-panel); box-shadow: none; }
+  .mission-home-inner { height: clamp(340px, 90vw, 430px); border-radius: var(--radius-media); }
   .mission-home img { object-position: 20% center; }
   .mission-home-inner::after { background: linear-gradient(180deg, transparent 35%, #17232922 55%, #172329ba 100%); }
   .mission-home figcaption { left: 24px; right: 24px; top: auto; bottom: 26px; width: auto; }
@@ -175,7 +175,7 @@ import SiteIcon from "./SiteIcon.vue";
   .mission-home h3 { font-size: clamp(28px, 7vw, 36px); }
   .mission-home figcaption > p { font-size: 14px; margin-top: 10px; }
   .mission-details { position: relative; inset: auto; width: 100%; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 14px 0 0; padding: 0; }
-  .mission-story { min-height: 0; border: 1px solid #d6e9f3; border-radius: 18px; background: #fff; box-shadow: none; }
+  .mission-story { min-height: 0; border: 1px solid #d6e9f3; border-radius: var(--radius-panel); background: #fff; box-shadow: none; }
   .mission-story-image { position: relative; inset: auto; aspect-ratio: 4 / 5; }
   .mission-story-image::after { display: none; }
   .mission-system img { object-position: 50% 55%; }
@@ -198,7 +198,7 @@ import SiteIcon from "./SiteIcon.vue";
   .mission-link { width: 100%; }
 }
 @media (max-width: 767px) {
-  .mission-story { aspect-ratio: 1; border: 0; border-radius: 16px; }
+  .mission-story { aspect-ratio: 1; border: 0; border-radius: var(--radius-panel); }
   .mission-story-image { position: absolute; inset: 0; aspect-ratio: auto; }
   .mission-story-image::after { display: block; background: linear-gradient(180deg, transparent 35%, #102d3a26 55%, #102d3ad9 100%); }
   .mission-story figcaption { position: absolute; inset: auto 0 0; padding: 14px; }

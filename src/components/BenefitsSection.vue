@@ -30,9 +30,7 @@ const benefits = [
 <style scoped>
 .benefits-band.page-section {
   padding-block: 44px;
-  background:
-    radial-gradient(ellipse at 10% 0%, #42b9ec30, transparent 65%),
-    linear-gradient(110deg, #126b95, #0d527b 65%, #104967);
+  background: #155d7b;
   border-top: 1px solid #ffffff26;
   color: #fff;
 }
@@ -83,7 +81,7 @@ const benefits = [
   .benefits-band-heading > p { margin-bottom: 12px; }
   .benefits-band-heading h2 { font-size: 30px; line-height: 1.15; }
   .benefits-band-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; padding: 0; margin: 0; border: 0; }
-  .benefits-band-list li { min-width: 0; padding: 22px 12px; border: 1px solid #bde7fa38; border-radius: 18px; background: #ffffff08; text-align: center; }
+  .benefits-band-list li { min-width: 0; padding: 22px 12px; border: 1px solid #bde7fa38; border-radius: var(--radius-control); background: #ffffff08; text-align: center; }
   .benefits-band-list svg { display: block; margin: 0 auto 14px; }
   .benefits-band-list h3 { font-size: 16px; line-height: 1.3; }
   .benefits-band-list p { max-width: 230px; margin-inline: auto; font-size: 14px; line-height: 1.5; }

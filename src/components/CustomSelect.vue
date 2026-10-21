@@ -98,7 +98,7 @@ defineExpose({ focus: () => trigger.value?.focus() });
 
 <style scoped>
 .custom-select { position: relative; }
-.select-trigger { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 54px; padding: 13px 16px; border: 1px solid #d2e3ed; border-radius: 13px; background: #f6fbfe; color: #183343; text-align: left; font-size: 15px; }
+.select-trigger { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 54px; padding: 13px 16px; border: 1px solid #d2e3ed; border-radius: var(--radius-control); background: #f6fbfe; color: #183343; text-align: left; font-size: 15px; }
 .select-trigger > svg { width: 22px; height: 22px; flex-shrink: 0; color: #178ac0; }
 .select-trigger > span { flex: 1; }
 .select-trigger .placeholder { color: #647b8a; }
@@ -107,9 +107,9 @@ defineExpose({ focus: () => trigger.value?.focus() });
 .select-trigger.is-open { border-color: #178ac0; background: #fff; }
 .select-trigger.is-invalid { border-color: #b84141; }
 .select-trigger:focus-visible { outline: 3px solid #178ac044; outline-offset: 2px; border-color: #178ac0; }
-.select-menu { position: absolute; z-index: 10; top: calc(100% + 8px); left: 0; right: 0; margin: 0; padding: 7px; max-height: min(320px, 45dvh); overflow-y: auto; overscroll-behavior: contain; list-style: none; border: 1px solid #cde4f2; border-radius: 16px; background: #fff; box-shadow: 0 16px 45px #14567626; }
+.select-menu { position: absolute; z-index: 10; top: calc(100% + 8px); left: 0; right: 0; margin: 0; padding: 7px; max-height: min(320px, 45dvh); overflow-y: auto; overscroll-behavior: contain; list-style: none; border: 1px solid #cde4f2; border-radius: var(--radius-control); background: #fff; box-shadow: 0 16px 45px #14567626; }
 .select-menu.opens-above { top: auto; bottom: calc(100% + 8px); }
-.select-menu li { display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 11px 12px; border-radius: 10px; cursor: pointer; color: #23485e; font-size: 15px; }
+.select-menu li { display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 11px 12px; border-radius: var(--radius-control); cursor: pointer; color: #23485e; font-size: 15px; }
 .select-menu li.highlighted { background: #eaf7ff; color: #116f9b; }
 .select-menu li[aria-selected="true"] { font-weight: 500; }
 .select-menu svg { width: 21px; height: 21px; flex-shrink: 0; color: #178ac0; }
