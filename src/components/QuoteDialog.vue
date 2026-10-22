@@ -106,7 +106,7 @@ defineExpose({ open });
 .quote-dialog { z-index: 2147483647; max-height: calc(100dvh - 32px); overflow-y: auto; overscroll-behavior: contain; }
 .dialog-close { min-width: 44px; min-height: 44px; display: grid; place-items: center; }
 .dialog-close svg { width: 24px; height: 24px; }
-.quote-dialog a { display: inline-flex; align-items: center; min-height: 44px; max-width: 100%; overflow-wrap: anywhere; color: #12688f; text-decoration: underline; }
+.quote-dialog a { display: inline-flex; align-items: center; min-height: 44px; max-width: 100%; overflow-wrap: anywhere; color: var(--brand-primary); text-decoration: underline; }
 @media (max-width: 540px) {
   .quote-dialog { width: calc(100% - 32px); padding: 52px 22px 26px; }
   .quote-dialog h2 { font-size: 30px; }

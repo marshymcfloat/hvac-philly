@@ -9,10 +9,10 @@
 :root {
   font-family: "Host Grotesk", "Inter", Arial, sans-serif;
   font-weight: 500;
-  --ink: #242424;
-  --page-gray: #f9f9f9;
-  --body-gray: #656565;
-  --hero-band-color: #e1f3fc;
+  --ink: var(--brand-primary);
+  --page-gray: var(--surface-muted);
+  --body-gray: var(--brand-primary);
+  --hero-band-color: var(--surface-muted);
 }
 
 body {
@@ -44,15 +44,15 @@ img {
 .hero-section {
   background: linear-gradient(
     180deg,
-    #0e6793 0%,
-    #22a7e9 48%,
-    #8bd5f5 73%,
-    #ccebf9 88%,
+    var(--brand-primary) 0%,
+    var(--brand-primary) 48%,
+    var(--surface-muted) 73%,
+    var(--surface-muted) 88%,
     var(--hero-band-color) 100%
   );
 }
 .assurance-card {
-  background: linear-gradient(7deg, #3cbdfd70 0%, #1d7eae50 100%);
+  background: linear-gradient(7deg, color-mix(in srgb, var(--brand-primary) 43.9%, transparent) 0%, color-mix(in srgb, var(--brand-primary) 31.4%, transparent) 100%);
   backdrop-filter: blur(8px);
 }
 .assurance-card h2 {
@@ -106,7 +106,7 @@ img {
   line-height: 20px;
   font-weight: 500;
   white-space: nowrap;
-  color: #242424;
+  color: var(--brand-dark);
 }
 .section-tag > span {
   width: 18px;
@@ -134,7 +134,7 @@ img {
   width: 44px;
   height: 44px;
   padding: 10px;
-  border: 1px solid #dedede;
+  border: 1px solid var(--surface-muted);
   background: #fff;
   border-radius: 50%;
   display: grid;
@@ -148,13 +148,13 @@ img {
   height: 22px;
 }
 .carousel-buttons button:hover {
-  background: #218dc0;
-  border-color: #218dc0;
+  background: var(--brand-primary);
+  border-color: var(--brand-primary);
   color: #fff;
 }
 
 .trusted-strip {
-  background: linear-gradient(180deg, #f5fbff 0%, #fff 85%);
+  background: linear-gradient(180deg, var(--surface-muted) 0%, #fff 85%);
   padding: 40px 0 48px;
 }
 .trusted-strip > .page-container {
@@ -222,7 +222,7 @@ img {
 }
 
 .projects-section {
-  background: #f9f9f9;
+  background: var(--surface-muted);
 }
 .project-mosaic {
   display: grid;
@@ -235,7 +235,7 @@ img {
   overflow: hidden;
   border-radius: 24px;
   padding: 0;
-  background: #d7e6ea;
+  background: var(--surface-muted);
   text-align: left;
   color: #fff;
 }
@@ -274,7 +274,7 @@ img {
   content: "";
   position: absolute;
   inset: 45% 0 0;
-  background: linear-gradient(transparent, #042331b3);
+  background: linear-gradient(transparent, color-mix(in srgb, var(--brand-dark) 70.2%, transparent));
   pointer-events: none;
 }
 .project-photo-caption {
@@ -323,7 +323,7 @@ img {
   padding: 24px;
   border-radius: 24px;
   color: #fff;
-  background: linear-gradient(180deg, #91dafe, #3cbdfd 50%, #048fd3);
+  background: linear-gradient(180deg, var(--surface-muted), var(--brand-primary) 50%, var(--brand-primary));
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -351,11 +351,11 @@ img {
   border: 0;
   border-radius: 24px;
   background: #fff;
-  color: #242424;
+  color: var(--brand-dark);
   overflow-y: auto;
 }
 .project-lightbox::backdrop {
-  background: #092431c9;
+  background: color-mix(in srgb, var(--brand-dark) 78.8%, transparent);
   backdrop-filter: blur(9px);
 }
 .project-lightbox > img {
@@ -387,7 +387,7 @@ img {
 }
 .lightbox-bottom p {
   font-size: 15px;
-  color: #656565;
+  color: var(--brand-primary);
   line-height: 1.5;
   margin-top: 12px;
   max-width: 750px;
@@ -397,7 +397,7 @@ img {
 }
 
 .testimonials-section {
-  background: #f9f9f9;
+  background: var(--surface-muted);
   padding-top: 30px;
 }
 .featured-review {
@@ -471,7 +471,7 @@ img {
   display: block;
   margin-top: 4px;
   font-size: 14px;
-  color: #777;
+  color: var(--brand-primary);
 }
 .reviews-grid {
   margin-top: 24px;
@@ -496,7 +496,7 @@ img {
   margin: 0;
   font-size: 16px;
   line-height: 1.5;
-  color: #555;
+  color: var(--brand-primary);
 }
 .review-card .review-author {
   margin-top: auto;
@@ -509,7 +509,7 @@ img {
 }
 
 .team-section {
-  background: #f9f9f9;
+  background: var(--surface-muted);
 }
 .team-grid {
   display: grid;
@@ -522,7 +522,7 @@ img {
   aspect-ratio: 1.08;
   border-radius: 24px;
   overflow: hidden;
-  background: linear-gradient(135deg, #d5edf8, #f2f7f9);
+  background: linear-gradient(135deg, var(--surface-muted), var(--surface-muted));
 }
 .team-photo img {
   width: 100%;
@@ -559,7 +559,7 @@ img {
 .team-details p {
   margin-top: 7px;
   font-size: 15px;
-  color: #777;
+  color: var(--brand-primary);
 }
 
 .emergency-section {
@@ -572,7 +572,7 @@ img {
   overflow: hidden;
   min-height: 790px;
   padding: 55px 24px 390px;
-  background: linear-gradient(180deg, #78d5ff, #279ed5 70%, #136a95);
+  background: linear-gradient(180deg, var(--surface-muted), var(--brand-primary) 70%, var(--brand-primary));
 }
 .emergency-copy {
   position: relative;

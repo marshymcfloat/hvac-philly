@@ -74,7 +74,7 @@ const counties = ["Philadelphia", "Delaware", "Montgomery", "Bucks", "Chester"];
 </template>
 
 <style scoped>
-.coverage-section { --coverage-ink: #173c4d; --coverage-muted: #466473; --coverage-accent: #126b8f; --coverage-line: #bfd5df; background: #e6f0f4; color: var(--coverage-ink); padding-block: 64px; }
+.coverage-section { --coverage-ink: var(--brand-primary); --coverage-muted: var(--brand-primary); --coverage-accent: var(--brand-primary); --coverage-line: var(--surface-muted); background: var(--surface-muted); color: var(--coverage-ink); padding-block: 64px; }
 .coverage-container { width: min(var(--content-max-width), calc(100% - 40px)); margin-inline: auto; }
 .coverage-heading { display: grid; gap: 24px; margin-bottom: 30px; }
 .coverage-heading .section-tag { color: var(--coverage-accent); }
@@ -85,8 +85,8 @@ const counties = ["Philadelphia", "Delaware", "Montgomery", "Bucks", "Chester"];
 .coverage-intro > svg { display: none; width: 28px; height: 28px; color: var(--coverage-accent); }
 .coverage-intro p { font-size: 17px; line-height: 1.6; color: var(--coverage-muted); }
 .coverage-intro > span { display: block; margin-top: 12px; font-size: 14px; line-height: 1.6; color: var(--coverage-muted); }
-.landmark-gallery { display: grid; grid-auto-flow: column; grid-auto-columns: 86%; gap: 12px; overflow-x: auto; margin-inline: -20px; padding-inline: 20px; scroll-padding-inline: 20px; scroll-snap-type: x mandatory; scrollbar-width: thin; scrollbar-color: #b5d5e4 transparent; padding-bottom: 10px; }
-.landmark { position: relative; min-width: 0; height: 410px; margin: 0; border-radius: 12px; overflow: hidden; isolation: isolate; scroll-snap-align: start; background: #d9e5ea; }
+.landmark-gallery { display: grid; grid-auto-flow: column; grid-auto-columns: 86%; gap: 12px; overflow-x: auto; margin-inline: -20px; padding-inline: 20px; scroll-padding-inline: 20px; scroll-snap-type: x mandatory; scrollbar-width: thin; scrollbar-color: var(--surface-muted) transparent; padding-bottom: 10px; }
+.landmark { position: relative; min-width: 0; height: 410px; margin: 0; border-radius: 12px; overflow: hidden; isolation: isolate; scroll-snap-align: start; background: var(--surface-muted); }
 .landmark-image { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; cursor: zoom-in; background: transparent; }
 .landmark-image img { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform 400ms ease; }
 .landmark-image::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgb(0 0 0 / 8%), transparent 45%); pointer-events: none; }
@@ -123,7 +123,7 @@ const counties = ["Philadelphia", "Delaware", "Montgomery", "Bucks", "Chester"];
 .coverage-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; }
 .coverage-phone { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 10px 16px; border-radius: 6px; background: #fff; color: var(--coverage-accent); font-size: 16px; text-decoration: none; }
 .coverage-phone svg { width: 19px; height: 19px; }
-.coverage-phone:hover { background: #d4e6ee; }
+.coverage-phone:hover { background: var(--surface-muted); }
 .coverage-phone:focus-visible { outline: 2px solid var(--coverage-accent); outline-offset: 3px; }
 .coverage-notes { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 0 32px; margin-top: 12px; }
 .equipment-brands { color: var(--coverage-muted); font-size: 14px; line-height: 1.7; }
@@ -132,7 +132,7 @@ const counties = ["Philadelphia", "Delaware", "Montgomery", "Bucks", "Chester"];
 .equipment-brands summary:focus-visible { outline: 2px solid var(--coverage-accent); outline-offset: 3px; }
 .landmark-credits p { max-width: 850px; margin-top: 4px; }
 .landmark-credits a { text-decoration: underline; text-underline-offset: 3px; }
-.landmark-image:focus-visible { outline: 3px solid #7dd6ff; outline-offset: -5px; }
+.landmark-image:focus-visible { outline: 3px solid var(--surface-muted); outline-offset: -5px; }
 .landmark-credits a:focus-visible, .landmark-credits summary:focus-visible { outline: 2px solid var(--coverage-accent); outline-offset: 3px; }
 @media (hover: hover) { .landmark-image:hover img { transform: scale(1.035); } }
 @media (min-width: 768px) {

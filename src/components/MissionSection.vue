@@ -122,32 +122,32 @@ const images = [
 </template>
 
 <style scoped>
-.mission-section { position: relative; isolation: isolate; padding-block: 112px 88px; background: #fff; color: #183343; }
+.mission-section { position: relative; isolation: isolate; padding-block: 112px 88px; background: var(--surface-muted); color: var(--brand-dark); }
 .mission-container { position: relative; width: min(var(--content-max-width), calc(100% - 64px)); margin-inline: auto; }
 .mission-heading { display: grid; grid-template-columns: 1.25fr 1fr; align-items: start; gap: 28px 48px; margin-bottom: 60px; }
 .mission-eyebrow { grid-column: 1 / -1; justify-self: start; }
 .mission-heading h2 { font-family: inherit; font-size: clamp(56px, 5.6vw, 72px); font-weight: 500; line-height: 1.08; letter-spacing: -2.6px; }
-.mission-heading h2 > span { color: #178ac0; }
+.mission-heading h2 > span { color: var(--brand-primary); }
 .mission-introduction { width: 100%; max-width: 420px; justify-self: end; padding-top: 6px; }
 .mission-intro-heading { display: flex; align-items: flex-start; justify-content: flex-start; gap: 16px; margin-bottom: 20px; }
-.mission-intro-heading > svg { margin-top: 3px; width: 34px; height: 34px; flex-shrink: 0; color: #178ac0; stroke-width: 1.7; }
+.mission-intro-heading > svg { margin-top: 3px; width: 34px; height: 34px; flex-shrink: 0; color: var(--brand-primary); stroke-width: 1.7; }
 .mission-lead { font-size: 22px; font-weight: 500; line-height: 1.25; letter-spacing: -.6px; }
-.mission-introduction > p:last-child { color: #596975; font-size: 16px; line-height: 1.7; }
+.mission-introduction > p:last-child { color: var(--brand-primary); font-size: 16px; line-height: 1.7; }
 .mission-composition { display: block; }
 .mission-composition figure { margin: 0; min-width: 0; }
 .mission-scene { position: relative; }
 .mission-home { position: relative; padding: 6px; border-radius: var(--radius-panel); background: #fff; box-shadow: none; overflow: hidden; }
 .mission-home-inner { position: relative; width: 100%; height: clamp(740px, 54vw, 800px); overflow: hidden; border-radius: var(--radius-media); isolation: isolate; }
 .mission-home img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; object-position: 25% center; }
-.mission-home-inner::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, #17232933 75%, #17232970 100%), radial-gradient(ellipse at 8% 100%, #17232999, transparent 60%); pointer-events: none; }
-.mission-photo-index { position: absolute; z-index: 1; top: 30px; left: 34px; color: #264653; background: #ffffffe0; padding: 8px 11px; border-radius: var(--radius-control); font-size: 14px; letter-spacing: 1.3px; text-transform: uppercase; font-weight: 500; }
+.mission-home-inner::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, color-mix(in srgb, var(--brand-dark) 20.0%, transparent) 75%, color-mix(in srgb, var(--brand-dark) 43.9%, transparent) 100%), radial-gradient(ellipse at 8% 100%, color-mix(in srgb, var(--brand-dark) 60.0%, transparent), transparent 60%); pointer-events: none; }
+.mission-photo-index { position: absolute; z-index: 1; top: 30px; left: 34px; color: var(--brand-primary); background: #ffffffe0; padding: 8px 11px; border-radius: var(--radius-control); font-size: 14px; letter-spacing: 1.3px; text-transform: uppercase; font-weight: 500; }
 .mission-home figcaption { position: absolute; z-index: 1; left: 42px; bottom: 184px; width: 36%; color: #fff; text-shadow: 0 2px 14px #00000030; }
 .mission-caption-eyebrow { display: inline-flex; align-items: center; gap: 10px; color: #fff; font-size: 14px; font-weight: 500; letter-spacing: 1.6px; margin-bottom: 16px; }
 .mission-caption-eyebrow svg { width: 23px; height: 23px; }
-.mission-home figcaption > p { margin-top: 17px; color: #f0f3f4; font-size: 15px; line-height: 1.65; }
+.mission-home figcaption > p { margin-top: 17px; color: var(--surface-muted); font-size: 15px; line-height: 1.65; }
 .mission-home h3 { font-size: clamp(30px, 3vw, 42px); line-height: 1.12; letter-spacing: -1.1px; font-weight: 500; }
 .mission-details { position: absolute; z-index: 2; bottom: 174px; right: 36px; width: 54%; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.mission-story { position: relative; min-height: 310px; border: 1px solid #ffffff99; border-radius: 14px; overflow: hidden; background: #f5f3ee; box-shadow: 0 8px 28px #23312b14; }
+.mission-story { position: relative; min-height: 310px; border: 1px solid #ffffff99; border-radius: 14px; overflow: hidden; background: #f5f3ee; box-shadow: 0 8px 28px color-mix(in srgb, var(--brand-dark) 7.8%, transparent); }
 .mission-story-image { position: absolute; inset: 0; }
 .mission-story-image img { display: block; width: 100%; height: 100%; object-fit: cover; filter: saturate(.72) contrast(.88) brightness(1.06); }
 .mission-system img { object-position: 50% 56%; }
@@ -159,18 +159,18 @@ const images = [
 .mission-story-index { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid #ffffff33; border-radius: 100px; background: rgb(0 0 0 / 72%); color: #fff; font-size: 14px; font-weight: 500; letter-spacing: 0; text-shadow: none; }
 .mission-story-index svg { width: 18px; height: 18px; flex-shrink: 0; color: #fff; }
 .mission-story h3 { color: #fff; font-size: clamp(21px, 1.65vw, 25px); font-weight: 500; line-height: 1.25; letter-spacing: -.45px; text-shadow: none; text-wrap: balance; }
-.mission-story p { margin-top: 8px; color: #f0f0f0; font-size: 14px; line-height: 1.55; max-width: 260px; }
+.mission-story p { margin-top: 8px; color: var(--surface-muted); font-size: 14px; line-height: 1.55; max-width: 260px; }
 .mission-story-title-mobile { display: none; }
-.mission-principles { position: absolute; z-index: 3; bottom: 32px; left: 36px; right: 36px; display: grid; grid-template-columns: .85fr 1.15fr 1.1fr; align-items: center; gap: 28px; min-height: 114px; padding: 23px 26px; border: 1px solid #ffffffcc; border-radius: var(--radius-panel); background: #f5fbfff0; box-shadow: none; }
-.mission-small-title { max-width: 260px; color: #183343; font-size: 22px; font-weight: 500; line-height: 1.25; letter-spacing: -.5px; }
-.mission-principles > div { display: flex; gap: 12px; padding-left: 22px; border-left: 1px solid #bfd7e3; }
-.mission-principles svg { width: 24px; height: 24px; flex-shrink: 0; color: #178ac0; }
-.mission-principles div p { font-size: 14px; line-height: 1.65; color: #596975; }
-.mission-principles strong { display: block; margin-bottom: 5px; font-size: 16px; font-weight: 500; color: #183343; }
+.mission-principles { position: absolute; z-index: 3; bottom: 32px; left: 36px; right: 36px; display: grid; grid-template-columns: .85fr 1.15fr 1.1fr; align-items: center; gap: 28px; min-height: 114px; padding: 23px 26px; border: 1px solid #ffffffcc; border-radius: var(--radius-panel); background: color-mix(in srgb, var(--surface-muted) 94.1%, transparent); box-shadow: none; }
+.mission-small-title { max-width: 260px; color: var(--brand-dark); font-size: 22px; font-weight: 500; line-height: 1.25; letter-spacing: -.5px; }
+.mission-principles > div { display: flex; gap: 12px; padding-left: 22px; border-left: 1px solid var(--surface-muted); }
+.mission-principles svg { width: 24px; height: 24px; flex-shrink: 0; color: var(--brand-primary); }
+.mission-principles div p { font-size: 14px; line-height: 1.65; color: var(--brand-primary); }
+.mission-principles strong { display: block; margin-bottom: 5px; font-size: 16px; font-weight: 500; color: var(--brand-dark); }
 .mission-closing { position: relative; margin-top: 62px; padding-top: 34px; display: flex; justify-content: space-between; align-items: center; gap: 28px; }
-.mission-closing::before { content: ""; position: absolute; top: 0; inset-inline: 0; height: 1px; background: linear-gradient(90deg, #18334326, #18334308); }
+.mission-closing::before { content: ""; position: absolute; top: 0; inset-inline: 0; height: 1px; background: linear-gradient(90deg, color-mix(in srgb, var(--brand-dark) 14.9%, transparent), color-mix(in srgb, var(--brand-dark) 3.1%, transparent)); }
 .mission-closing > p { font-size: 25px; line-height: 1.3; letter-spacing: -.6px; }
-.mission-closing > p span { color: #178ac0; }
+.mission-closing > p span { color: var(--brand-primary); }
 .mission-link { display: inline-flex; align-items: center; justify-content: space-between; gap: 22px; padding: 12px 22px; min-height: 56px; border-radius: var(--radius-control); color: #fff; font-size: 15px; font-weight: 500; transition: transform 350ms cubic-bezier(.22, 1, .36, 1); }
 .mission-link > span { display: grid; place-items: center; width: 22px; height: 22px; }
 .mission-link svg { width: 22px; height: 22px; transition: transform 350ms cubic-bezier(.22, 1, .36, 1); }
@@ -182,7 +182,7 @@ const images = [
   .mission-home-inner { height: 810px; }
   .mission-home figcaption { top: 60px; bottom: auto; left: auto; right: 34px; width: 46%; }
   .mission-home .mission-photo-index { top: 24px; left: 28px; }
-  .mission-home-inner::after { background: radial-gradient(ellipse at 90% 10%, #172329aa 0%, #17232944 35%, transparent 65%); }
+  .mission-home-inner::after { background: radial-gradient(ellipse at 90% 10%, color-mix(in srgb, var(--brand-dark) 66.7%, transparent) 0%, color-mix(in srgb, var(--brand-dark) 26.7%, transparent) 35%, transparent 65%); }
   .mission-details { width: auto; left: 28px; right: 28px; bottom: 214px; }
   .mission-story { min-height: 270px; }
   .mission-story figcaption { min-height: 268px; }
@@ -202,26 +202,26 @@ const images = [
   .mission-home { padding: 4px; border-radius: var(--radius-panel); box-shadow: none; }
   .mission-home-inner { height: clamp(340px, 90vw, 430px); border-radius: var(--radius-media); }
   .mission-home img { object-position: 20% center; }
-  .mission-home-inner::after { background: linear-gradient(180deg, transparent 35%, #17232922 55%, #172329ba 100%); }
+  .mission-home-inner::after { background: linear-gradient(180deg, transparent 35%, color-mix(in srgb, var(--brand-dark) 13.3%, transparent) 55%, color-mix(in srgb, var(--brand-dark) 72.9%, transparent) 100%); }
   .mission-home figcaption { left: 24px; right: 24px; top: auto; bottom: 26px; width: auto; }
   .mission-home .mission-photo-index, .mission-caption-eyebrow { display: none; }
   .mission-home h3 { font-size: clamp(28px, 7vw, 36px); }
   .mission-home figcaption > p { font-size: 14px; margin-top: 10px; }
   .mission-details { position: relative; inset: auto; width: 100%; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 14px 0 0; padding: 0; }
-  .mission-story { min-height: 0; border: 1px solid #d6e9f3; border-radius: var(--radius-panel); background: #fff; box-shadow: none; }
+  .mission-story { min-height: 0; border: 1px solid var(--surface-muted); border-radius: var(--radius-panel); background: #fff; box-shadow: none; }
   .mission-story-image { position: relative; inset: auto; aspect-ratio: 4 / 5; }
   .mission-system img { object-position: 50% 55%; }
   .mission-air img { object-position: 48% 40%; }
-  .mission-story figcaption { min-height: 0; padding: 16px 14px 18px; justify-content: flex-start; color: #183343; }
+  .mission-story figcaption { min-height: 0; padding: 16px 14px 18px; justify-content: flex-start; color: var(--brand-dark); }
   .mission-story-top { position: static; margin-bottom: 12px; }
   .mission-story-index { display: none; }
-  .mission-story-icon { width: 30px; height: 30px; border: 0; border-radius: 0; background: none; color: #178ac0; }
+  .mission-story-icon { width: 30px; height: 30px; border: 0; border-radius: 0; background: none; color: var(--brand-primary); }
   .mission-story-icon svg { width: 28px; height: 28px; }
-  .mission-story h3 { color: #183e55; font-size: clamp(18px, 4.7vw, 24px); letter-spacing: -.45px; line-height: 1.2; overflow-wrap: anywhere; }
-  .mission-story p { color: #596f7d; font-size: 14px; line-height: 1.5; margin-top: 8px; min-height: 0; }
+  .mission-story h3 { color: var(--brand-primary); font-size: clamp(18px, 4.7vw, 24px); letter-spacing: -.45px; line-height: 1.2; overflow-wrap: anywhere; }
+  .mission-story p { color: var(--brand-primary); font-size: 14px; line-height: 1.5; margin-top: 8px; min-height: 0; }
   .mission-principles { position: relative; inset: auto; margin: 28px 0 0; padding: 0; grid-template-columns: 1fr; gap: 20px; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
   .mission-small-title { max-width: none; font-size: 24px; text-align: center; margin-bottom: 2px; }
-  .mission-principles > div { padding: 18px 0 0; border: 0; border-top: 1px solid #c9e2ef; gap: 14px; }
+  .mission-principles > div { padding: 18px 0 0; border: 0; border-top: 1px solid var(--surface-muted); gap: 14px; }
   .mission-principles svg { width: 26px; height: 26px; margin-top: 2px; }
   .mission-principles div p { font-size: 14px; line-height: 1.6; }
   .mission-principles strong { font-size: 17px; }
@@ -230,7 +230,7 @@ const images = [
   .mission-link { width: 100%; }
 }
 @media (max-width: 767px) {
-  .mission-story { aspect-ratio: 1; border: 1px solid #e8e7e1; border-radius: 12px; }
+  .mission-story { aspect-ratio: 1; border: 1px solid var(--surface-muted); border-radius: 12px; }
   .mission-story-image { position: absolute; inset: 0; aspect-ratio: auto; }
   .mission-story figcaption { position: absolute; inset: 0; padding: 0; }
   .mission-story-copy { min-height: 0; padding: 10px 12px 12px; }
@@ -243,8 +243,8 @@ const images = [
 @media (prefers-reduced-motion: reduce) {
   .mission-link, .mission-link svg { transition: none; }
 }
-.mission-gallery-trigger { display: block; padding: 0; border: 0; background: #d5e1e5; color: inherit; text-align: left; cursor: zoom-in; }
+.mission-gallery-trigger { display: block; padding: 0; border: 0; background: var(--surface-muted); color: inherit; text-align: left; cursor: zoom-in; }
 .mission-story-image.mission-gallery-trigger { width: 100%; height: 100%; }
-.mission-gallery-trigger:focus-visible { outline: 3px solid #7dd6ff; outline-offset: -4px; }
+.mission-gallery-trigger:focus-visible { outline: 3px solid var(--surface-muted); outline-offset: -4px; }
 .mission-home figcaption, .mission-story figcaption { pointer-events: none; }
 </style>

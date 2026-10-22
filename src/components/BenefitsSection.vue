@@ -30,7 +30,7 @@ const benefits = [
 <style scoped>
 .benefits-band.page-section {
   padding-block: 44px;
-  background: #155d7b;
+  background: var(--brand-primary);
   border-top: 1px solid #ffffff26;
   color: #fff;
 }
@@ -44,7 +44,7 @@ const benefits = [
 }
 .benefits-band-heading > p {
   margin-bottom: 12px;
-  color: #c0eaff;
+  color: var(--surface-muted);
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 1.4px;
@@ -64,11 +64,11 @@ const benefits = [
   list-style: none;
   margin: 0;
   padding: 0 0 0 36px;
-  border-left: 1px solid #bde7fa38;
+  border-left: 1px solid color-mix(in srgb, var(--surface-muted) 22.0%, transparent);
 }
-.benefits-band-list svg { width: 29px; height: 29px; color: #91ddff; margin-bottom: 13px; }
+.benefits-band-list svg { width: 29px; height: 29px; color: var(--surface-muted); margin-bottom: 13px; }
 .benefits-band-list h3 { color: #fff; font-size: 16px; font-weight: 500; line-height: 1.3; letter-spacing: -.2px; margin-bottom: 7px; }
-.benefits-band-list p { color: #d4eaf6; font-size: 14px; line-height: 1.55; max-width: 185px; }
+.benefits-band-list p { color: var(--surface-muted); font-size: 14px; line-height: 1.55; max-width: 185px; }
 @media (max-width: 1000px) {
   .benefits-band-inner { grid-template-columns: 160px minmax(0, 1fr); gap: 24px; }
   .benefits-band-list { gap: 20px; padding-left: 24px; }
@@ -81,7 +81,7 @@ const benefits = [
   .benefits-band-heading > p { margin-bottom: 12px; }
   .benefits-band-heading h2 { font-size: 30px; line-height: 1.15; }
   .benefits-band-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; padding: 0; margin: 0; border: 0; }
-  .benefits-band-list li { min-width: 0; padding: 22px 12px; border: 1px solid #bde7fa38; border-radius: var(--radius-control); background: #ffffff08; text-align: center; }
+  .benefits-band-list li { min-width: 0; padding: 22px 12px; border: 1px solid color-mix(in srgb, var(--surface-muted) 22.0%, transparent); border-radius: var(--radius-control); background: #ffffff08; text-align: center; }
   .benefits-band-list svg { display: block; margin: 0 auto 14px; }
   .benefits-band-list h3 { font-size: 16px; line-height: 1.3; }
   .benefits-band-list p { max-width: 230px; margin-inline: auto; font-size: 14px; line-height: 1.5; }

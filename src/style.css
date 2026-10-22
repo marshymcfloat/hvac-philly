@@ -12,28 +12,30 @@
 
 :root {
   --content-max-width: 1440px;
-  --contact-footer-background: #185a78;
-  --brand-primary: #147eae;
-  --brand-hover: #0e668f;
-  --surface-muted: #f4f7f9;
+  --contact-footer-background: var(--brand-primary);
+  --brand-primary: #244e8a;
+  --brand-secondary: #5776a5;
+  --brand-dark: #101820;
+  --surface-muted: #d5e0f0;
+  --brand-hover: var(--brand-dark);
   --radius-control: 4px;
   --radius-media: 6px;
   --radius-panel: 8px;
   font-family: "Inter", Arial, sans-serif;
-  color: #20242a;
+  color: var(--brand-dark);
   background: #fff;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 500;
-  --blue: #178ac0;
-  --ink: #183343;
+  --blue: var(--brand-primary);
+  --ink: var(--brand-dark);
 }
 * {
   box-sizing: border-box;
   scrollbar-width: thin;
-  scrollbar-color: #178ac0 #eaf5fb;
+  scrollbar-color: var(--brand-primary) var(--surface-muted);
 }
 html {
   scroll-behavior: auto;
@@ -53,26 +55,26 @@ html {
   }
 
   ::-webkit-scrollbar-track {
-    background: #eaf5fb;
+    background: var(--surface-muted);
   }
 
   ::-webkit-scrollbar-thumb {
     min-height: 48px;
-    border: 2px solid #eaf5fb;
+    border: 2px solid var(--surface-muted);
     border-radius: 100px;
-    background: linear-gradient(180deg, #3cbdfd, #178ac0);
+    background: linear-gradient(180deg, var(--brand-primary), var(--brand-primary));
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #178ac0;
+    background: var(--brand-primary);
   }
 
   ::-webkit-scrollbar-thumb:active {
-    background: #10668f;
+    background: var(--brand-primary);
   }
 
   ::-webkit-scrollbar-corner {
-    background: #eaf5fb;
+    background: var(--surface-muted);
   }
 }
 
@@ -130,7 +132,7 @@ button:focus-visible,
 a:focus-visible,
 input:focus-visible,
 select:focus-visible {
-  outline: 3px solid #0b577e;
+  outline: 3px solid var(--brand-primary);
   outline-offset: 5px;
 }
 h1,
@@ -147,7 +149,7 @@ svg {
 }
 ::selection {
   color: #fff;
-  background: #137dab;
+  background: var(--brand-primary);
 }
 .sr-only {
   position: absolute;
@@ -192,7 +194,7 @@ svg {
   padding: 15px 16px;
   background: #fff;
   border-radius: 17px;
-  box-shadow: 0 8px 32px #0c537308;
+  box-shadow: 0 8px 32px color-mix(in srgb, var(--brand-primary) 3.1%, transparent);
 }
 .brand {
   display: flex;
@@ -222,7 +224,7 @@ svg {
   transition: color 0.2s;
 }
 .nav-link:hover {
-  color: #1284b7;
+  color: var(--brand-primary);
 }
 .pages-menu {
   position: relative;
@@ -245,9 +247,9 @@ svg {
   left: -16px;
   padding: 8px;
   background: white;
-  border: 1px solid #e2edf2;
+  border: 1px solid var(--surface-muted);
   border-radius: 12px;
-  box-shadow: 0 15px 35px #12445b18;
+  box-shadow: 0 15px 35px color-mix(in srgb, var(--brand-primary) 9.4%, transparent);
   min-width: 170px;
 }
 .pages-dropdown a {
@@ -257,8 +259,8 @@ svg {
   border-radius: 6px;
 }
 .pages-dropdown a:hover {
-  background: #edf8fd;
-  color: #0677ac;
+  background: var(--surface-muted);
+  color: var(--brand-primary);
 }
 .button {
   display: inline-flex;
@@ -308,10 +310,10 @@ svg {
   padding-top: 110px;
   background: linear-gradient(
     180deg,
-    #12688f 0%,
-    #1683b4 27%,
-    #20a5e2 51%,
-    #9bd9f2 79%,
+    var(--brand-primary) 0%,
+    var(--brand-primary) 27%,
+    var(--brand-primary) 51%,
+    var(--surface-muted) 79%,
     #fff 100%
   );
   overflow: hidden;
@@ -333,7 +335,7 @@ svg {
   line-height: 1.25;
   font-weight: 600;
   letter-spacing: -2.7px;
-  color: #fafafa;
+  color: var(--surface-muted);
   max-width: 605px;
 }
 .hero-copy > p {
@@ -352,12 +354,12 @@ svg {
   width: fit-content;
 }
 .button-white {
-  color: #282b2f;
-  background: #fafafa;
-  border: 1px solid #e6e8eb;
+  color: var(--brand-dark);
+  background: var(--surface-muted);
+  border: 1px solid var(--surface-muted);
 }
 .button-white:hover {
-  background: #e9f6fc;
+  background: var(--surface-muted);
 }
 .button-glass {
   background: #ffffff1a;
@@ -432,7 +434,7 @@ svg {
   padding: 3px;
   border: 1px solid #ffffffdb;
   border-radius: 20px;
-  background: #bcecff70;
+  background: color-mix(in srgb, var(--surface-muted) 43.9%, transparent);
   min-height: 55px;
 }
 .quick-quote input {
@@ -473,7 +475,7 @@ svg {
   font-size: 14px;
   font-weight: 650;
   letter-spacing: 1.8px;
-  color: #2486ac;
+  color: var(--brand-primary);
   margin-bottom: 16px;
 }
 h2 {
@@ -487,7 +489,7 @@ h2 {
 .about-section p {
   font-size: 15px;
   line-height: 1.7;
-  color: #697c86;
+  color: var(--brand-primary);
 }
 .services-grid {
   display: grid;
@@ -497,18 +499,18 @@ h2 {
 .service-item {
   text-align: left;
   padding: 25px 0 8px;
-  border-top: 1px solid #d8e6ec;
+  border-top: 1px solid var(--surface-muted);
   background: none;
 }
 .service-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #228cba;
+  color: var(--brand-primary);
   margin-bottom: 32px;
 }
 .service-top > span {
-  color: #9aaeb7;
+  color: var(--surface-muted);
   font-size: 14px;
 }
 .service-top svg {
@@ -524,7 +526,7 @@ h2 {
 }
 .service-item p {
   font-size: 14px;
-  color: #697c86;
+  color: var(--brand-primary);
   line-height: 1.8;
   max-width: 320px;
 }
@@ -533,7 +535,7 @@ h2 {
   justify-content: space-between;
   margin-top: 24px;
   font-size: 14px;
-  color: #2087b1;
+  color: var(--brand-primary);
   font-weight: 550;
 }
 .service-link > span {
@@ -545,7 +547,7 @@ h2 {
 }
 .about-section {
   padding-block: 55px 68px;
-  border-top: 1px solid #e3edf1;
+  border-top: 1px solid var(--surface-muted);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 70px;
@@ -563,7 +565,7 @@ h2 {
   gap: 12px 20px;
   margin-top: 24px;
   font-size: 14px;
-  color: #3285a6;
+  color: var(--brand-primary);
 }
 .promise-list span:before {
   content: "";
@@ -577,7 +579,7 @@ h2 {
 }
 footer {
   padding-block: 30px 40px;
-  border-top: 1px solid #e3edf1;
+  border-top: 1px solid var(--surface-muted);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -593,19 +595,19 @@ footer {
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0;
-  color: #697c86;
+  color: var(--brand-primary);
   margin-top: 8px;
 }
 .quote-dialog {
   width: min(440px, calc(100% - 32px));
   padding: 38px;
-  border: 1px solid #e2eef4;
+  border: 1px solid var(--surface-muted);
   border-radius: var(--radius-panel);
   color: var(--ink);
-  box-shadow: 0 30px 100px #093e6a30;
+  box-shadow: 0 30px 100px color-mix(in srgb, var(--brand-primary) 18.8%, transparent);
 }
 .quote-dialog::backdrop {
-  background: #08364b80;
+  background: color-mix(in srgb, var(--brand-dark) 50.2%, transparent);
   backdrop-filter: blur(7px);
 }
 .dialog-close {
@@ -616,7 +618,7 @@ footer {
   height: 44px;
   font-size: 28px;
   font-weight: 500;
-  color: #4c6b7c;
+  color: var(--brand-primary);
   background: none;
 }
 .quote-dialog h2 {
@@ -627,7 +629,7 @@ footer {
 .quote-success p {
   font-size: 14px;
   line-height: 1.6;
-  color: #697c86;
+  color: var(--brand-primary);
 }
 .quote-form {
   display: flex;
@@ -644,10 +646,10 @@ footer {
 .quote-form select {
   width: 100%;
   min-height: 47px;
-  border: 1px solid #cbdce4;
+  border: 1px solid var(--surface-muted);
   border-radius: var(--radius-control);
   padding: 11px 12px;
-  background: #f9fcfd;
+  background: var(--surface-muted);
   color: var(--ink);
 }
 .quote-form > .button {
@@ -656,7 +658,7 @@ footer {
 .quote-form .form-note {
   font-size: 14px;
   line-height: 1.5;
-  color: #697c86;
+  color: var(--brand-primary);
   text-align: center;
   margin-top: 3px;
 }
@@ -837,9 +839,9 @@ footer {
     align-items: stretch;
     padding: 12px;
     background: #fff;
-    border: 1px solid #dfedf3;
+    border: 1px solid var(--surface-muted);
     border-radius: 14px;
-    box-shadow: 0 14px 28px #0a5f7c18;
+    box-shadow: 0 14px 28px color-mix(in srgb, var(--brand-primary) 9.4%, transparent);
   }
   .nav-links.is-open {
     display: flex;
@@ -855,7 +857,7 @@ footer {
     border-radius: 7px;
   }
   .nav-link:hover {
-    background: #edf8fd;
+    background: var(--surface-muted);
   }
   .pages-toggle {
     width: 100%;
@@ -866,7 +868,7 @@ footer {
     box-shadow: none;
     border: 0;
     min-width: 0;
-    background: #f2f9fc;
+    background: var(--surface-muted);
     margin-block: 4px;
   }
   .hero-section {

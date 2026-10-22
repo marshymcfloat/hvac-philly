@@ -103,19 +103,19 @@ function requestQuote() { closeSheet("quote"); }
 </template>
 
 <style scoped>
-.mobile-sheet { position: fixed; inset: 0; z-index: 2147483647; height: 100dvh; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; overflow: hidden; background: #f3faff; color: #183e55; }
-.sheet-header { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: max(20px, env(safe-area-inset-top)) 20px 20px; border-bottom: 1px solid #cfe4ef; }
-.sheet-brand { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; font-size: clamp(18px, 5vw, 26px); font-weight: 600; }
-.sheet-header button { width: 48px; height: 48px; display: grid; place-items: center; background: #e2f1fa; color: #1a739d; border: 1px solid #c2e1f0; border-radius: var(--radius-control); }
+.mobile-sheet { position: fixed; inset: 0; z-index: 2147483647; height: 100dvh; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; overflow: hidden; background: var(--surface-muted); color: var(--brand-primary); }
+.sheet-header { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: max(20px, env(safe-area-inset-top)) 20px 20px; border-bottom: 1px solid var(--surface-muted); }
+.sheet-brand { --legacy-logo-width: clamp(180px, 56vw, 250px); display: inline-flex; align-items: center; gap: 10px; min-height: 44px; font-size: clamp(18px, 5vw, 26px); font-weight: 600; }
+.sheet-header button { width: 48px; height: 48px; display: grid; place-items: center; background: var(--surface-muted); color: var(--brand-primary); border: 1px solid var(--surface-muted); border-radius: var(--radius-control); }
 .sheet-header svg { width: 25px; height: 25px; }
 .sheet-navlinks { overflow-y: auto; overscroll-behavior: contain; padding: 18px 20px 32px; }
-.sheet-navlinks > a { display: flex; align-items: center; gap: 18px; min-height: 76px; padding: 20px 0; border-bottom: 1px solid #cfe4ef; font-size: clamp(25px, 6vw, 36px); font-weight: 500; letter-spacing: -.7px; }
-.sheet-number { font-size: 14px; color: #4f7a90; letter-spacing: 0; }
-.sheet-navlinks > a > svg { margin-left: auto; width: 24px; height: 24px; color: #168fc3; }
+.sheet-navlinks > a { display: flex; align-items: center; gap: 18px; min-height: 76px; padding: 20px 0; border-bottom: 1px solid var(--surface-muted); font-size: clamp(25px, 6vw, 36px); font-weight: 500; letter-spacing: -.7px; }
+.sheet-number { font-size: 14px; color: var(--brand-primary); letter-spacing: 0; }
+.sheet-navlinks > a > svg { margin-left: auto; width: 24px; height: 24px; color: var(--brand-primary); }
 .sheet-quote { margin-top: 28px; width: 100%; min-height: 54px; justify-content: space-between; }
-.sheet-footer { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; padding: 12px 24px max(16px, env(safe-area-inset-bottom)); border-top: 1px solid #cee3ee; }
+.sheet-footer { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; padding: 12px 24px max(16px, env(safe-area-inset-bottom)); border-top: 1px solid var(--surface-muted); }
 .sheet-footer a { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; min-height: 44px; font-size: 14px; overflow-wrap: anywhere; }
 .sheet-footer svg { width: 20px; height: 20px; }
-.sheet-footer span { color: #526e7f; }
-.mobile-sheet :is(a, button):focus-visible { outline: 3px solid #168fc3; outline-offset: 3px; }
+.sheet-footer span { color: var(--brand-primary); }
+.mobile-sheet :is(a, button):focus-visible { outline: 3px solid var(--brand-primary); outline-offset: 3px; }
 </style>
